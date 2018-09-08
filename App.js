@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation'
-import HomeScreen from './screens/HomeScreen'
-import SettingsScreen from './screens/SettingsScreen'
-import ContactScreen from './screens/ContactScreen'
-import AdditionalScreen from './screens/AdditionalScreen'
-import LoginScreen from './screens/LoginScreen'
+import HomeScreen from './src/screens/HomeScreen'
+import SettingsScreen from './src/screens/SettingsScreen'
+import ContactScreen from './src/screens/ContactScreen'
+import AdditionalScreen from './src/screens/AdditionalScreen'
+import LoginScreen from './src/screens/LoginScreen'
+import firebase from 'firebase'
 import {
   Platform,
   StyleSheet,
@@ -16,6 +17,17 @@ import {
   Image
 } from 'react-native';
 export default class App extends Component {
+  componentDidMount(){
+  const config = {
+    apiKey: "AIzaSyBETr7uRGiSSN9iJfo6bNphceEzcbYEoPg",
+    authDomain: "charkononline.firebaseapp.com",
+    databaseURL: "https://charkononline.firebaseio.com",
+    projectId: "charkononline",
+    storageBucket: "charkononline.appspot.com",
+    messagingSenderId: "973690432366"
+  };
+  firebase.initializeApp(config);
+}
   render() {
     return (
       <AppDrawerNavigator />

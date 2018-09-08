@@ -33,29 +33,29 @@ class ContactScreen extends Component {
                                     </View>
                                 </Right>
                             </Header>
-                                <View style={{flex:1,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-                                    <View style={{flexDirection: 'column',justifyContent:'center',alignItems:'center' }}>
-                                        <ElementIcon
-                                            reverse
-                                            name='ios-mail'
-                                            type='ionicon'
-                                            color='#517fa4'
-                                        />
-                                        <Text>
-                                            Email
+                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                                    <ElementIcon
+                                        reverse
+                                        name='ios-mail'
+                                        type='ionicon'
+                                        color='#517fa4'
+                                    />
+                                    <Text>
+                                        Email
                                         </Text>
-                                    </View>
-                                    <View style={{flexDirection: 'column',justifyContent:'center',alignItems:'center' }}>
-                                        <ElementIcon
-                                            reverse
-                                            name='ios-chatbubbles'
-                                            type='ionicon'
-                                            color='#517fa4'
-                                        />
-                                        <Text>
-                                            Chat
+                                </View>
+                                <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                                    <ElementIcon
+                                        reverse
+                                        name='ios-chatbubbles'
+                                        type='ionicon'
+                                        color='#517fa4'
+                                    />
+                                    <Text>
+                                        Chat
                                         </Text>
-                                    </View>
+                                </View>
                             </View>
                         </Container>
                     </Modal>
