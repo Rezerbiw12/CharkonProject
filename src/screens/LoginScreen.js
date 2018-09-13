@@ -6,12 +6,12 @@ import LoginForm from '../screens/LoginForm'
 import firebase from 'firebase'
 
 class LoginScreen extends Component {
-  state = { loggedIn: null };
   static navigationOptions = {
     drawerIcon: ({ tintColor }) => (
-      <Icon name="grid" style={{ fontSize: 24, color: tintColor }} />
+      <Icon name="log-in" style={{ fontSize: 24, color: tintColor }} />
     )
   }
+  state = { loggedIn: null };
   componentDidMount() {
     const config = {
       apiKey: "AIzaSyBETr7uRGiSSN9iJfo6bNphceEzcbYEoPg",
@@ -22,7 +22,6 @@ class LoginScreen extends Component {
       messagingSenderId: "973690432366"
     };
     firebase.initializeApp(config);
-
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
@@ -31,19 +30,34 @@ class LoginScreen extends Component {
       }
     });
   }
-
   renderFormLogin() {
     if (this.state.loggedIn == true) {
       return (
         <View>
+          <Header>
+            <Right>
+              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Title>Wellcome</Title>
+              </View>
+              <Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />
+            </Right>
+          </Header>
           <CardStyle>
             <Text style={styles.textEmailStyle}>{firebase.auth().currentUser.email}</Text>
-            <Button onPress={() => firebase.auth().signOut()}>Logout</Button>
+            <Button onPress={() => firebase.auth().signOut()}><Text>Logout</Text></Button>
           </CardStyle>
         </View>);
     } else {
       return (
         <View>
+          <Header>
+            <Right>
+              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Title>Wellcome</Title>
+              </View>
+              <Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />
+            </Right>
+          </Header>
           <LoginForm />
         </View>);
     }
@@ -52,17 +66,7 @@ class LoginScreen extends Component {
   render(props) {
     return (
       <View>
-        <Header>
-          <Right>
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <Title>Additional</Title>
-            </View>
-            <Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />
-          </Right>
-        </Header>
-        <View>
-          {this.renderFormLogin()}
-        </View>
+        {this.renderFormLogin()}
       </View>
     );
   }
@@ -75,6 +79,5 @@ const styles = {
     marginBottom: 6,
   }
 }
-
 export default LoginScreen;
 
