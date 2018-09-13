@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,ScrollView } from 'react-native';
 import { Container, Header, Left, Right, Icon, Title, Footer, FooterTab, Button, Badge } from 'native-base'
 import { SearchBar } from 'react-native-elements'
 import axios from 'axios';
@@ -43,7 +43,9 @@ class HomeScreen extends Component {
                          />
                 </View>
                 <View style={{ flex:1}}>
+                <ScrollView>
                 {this.renderAlbums()}
+                </ScrollView>
                 </View>
             </Container>
         );
