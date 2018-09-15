@@ -17,17 +17,6 @@ import {
   Image
 } from 'react-native';
 export default class App extends Component {
-  componentDidMount(){
-  const config = {
-    apiKey: "AIzaSyBETr7uRGiSSN9iJfo6bNphceEzcbYEoPg",
-    authDomain: "charkononline.firebaseapp.com",
-    databaseURL: "https://charkononline.firebaseio.com",
-    projectId: "charkononline",
-    storageBucket: "charkononline.appspot.com",
-    messagingSenderId: "973690432366"
-  };
-  firebase.initializeApp(config);
-}
   render() {
     return (
       <AppDrawerNavigator />
