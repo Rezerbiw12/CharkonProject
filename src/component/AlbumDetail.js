@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Linking } from 'react-native';
 import PropTypes from 'prop-types';
 import CardStyle from './CardStyle';
 import CardSection from './CardSection'
+import ButtonStyle from './ButtonStyle'
 
 const AlbumDetail = ({ album }) => {
-    const { title, artist, thumbnail_image, image } = album;
+    const { title, artist, thumbnail_image, image, url } = album;
     const {
         thumbnailStyle,
         headerContentStyle,
@@ -32,6 +33,11 @@ const AlbumDetail = ({ album }) => {
                     style={imageStyle}
                     source={{ uri: image }}
                 />
+            </CardSection>
+            <CardSection>
+                <ButtonStyle onPress={() => Linking.openURL(url)}>
+                    Buy Now!!!
+                </ButtonStyle>
             </CardSection>
         </CardStyle>
     );
@@ -63,6 +69,4 @@ const styles = {
 AlbumDetail.propTypes = {
     album: PropTypes.object.isRequired
 };
-
-// export to render
 export default AlbumDetail;
