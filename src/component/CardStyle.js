@@ -1,8 +1,6 @@
 import React,{Component} from 'react';
 import {View} from 'react-native';
-import PropTypes from 'prop-types'
- 
-// init card component.
+
 const CardStyle = (props)=>{
     return (
         <View style={stlyes.containerStyle}> 
@@ -10,8 +8,7 @@ const CardStyle = (props)=>{
         </View>
     );
 };
- 
-// style of card
+
 const stlyes ={
     containerStyle:{
     borderWidth: 1,
@@ -28,5 +25,4 @@ const stlyes ={
     }
 };
  
-// export to render
 export default CardStyle;

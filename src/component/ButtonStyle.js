@@ -12,6 +12,10 @@ const ButtonStyle = ({onPress, children}) => {
   );
 };
 
+ButtonStyle.propTypes = {
+  onPress: PropTypes.func.isRequired
+};
+
 const styles = {
   textStyle: {
     alignSelf: 'center',

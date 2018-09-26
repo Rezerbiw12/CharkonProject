@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { Container, Header, Left, Right, Icon, Title, Button } from 'native-base'
-import CardStyle from '../component/CardStyle'
+import CardSection from '../component/CardSection'
+import ButtonStyle from '../component/ButtonStyle'
 import LoginForm from '../screens/LoginForm'
 import firebase from 'firebase'
+import Spinner from '../component/Spinner'
 
 class LoginScreen extends Component {
   static navigationOptions = {
@@ -22,6 +24,7 @@ class LoginScreen extends Component {
       messagingSenderId: "973690432366"
     };
     firebase.initializeApp(config);
+    
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
@@ -30,54 +33,30 @@ class LoginScreen extends Component {
       }
     });
   }
-  renderFormLogin() {
-    if (this.state.loggedIn == true) {
-      return (
-        <View>
-          <Header>
-            <Right>
-              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Title>Wellcome</Title>
-              </View>
-              <Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />
-            </Right>
-          </Header>
-          <CardStyle>
-            <Text style={styles.textEmailStyle}>{firebase.auth().currentUser.email}</Text>
-            <Button onPress={() => firebase.auth().signOut()}><Text>Logout</Text></Button>
-          </CardStyle>
-        </View>);
-    } else {
-      return (
-        <View>
-          <Header>
-            <Right>
-              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Title>Wellcome</Title>
-              </View>
-              <Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />
-            </Right>
-          </Header>
-          <LoginForm />
-        </View>);
+  renderContent() {
+    switch (this.state.loggedIn) {
+      case true:
+        return (
+          <CardSection>
+            <ButtonStyle onPress={() => firebase.auth().signOut()}>
+              <Text>Log Out</Text>
+            </ButtonStyle>
+          </CardSection>
+        );
+      case false:
+        return <LoginForm />;
+      default:
+        return <Spinner size="large" />;
     }
   }
-
-  render(props) {
+  render() {
     return (
       <View>
-        {this.renderFormLogin()}
+       {this.renderContent()}
       </View>
     );
   }
 }
 
-const styles = {
-  textEmailStyle: {
-    fontSize: 18,
-    alignSelf: 'center',
-    marginBottom: 6,
-  }
-}
 export default LoginScreen;
 
