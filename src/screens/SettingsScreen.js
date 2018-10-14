@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text ,Platform} from 'react-native';
 import { Container, Header, Left, Right, Icon, Title } from 'native-base'
 
 class SettingsScreen extends Component {
@@ -20,7 +20,6 @@ class SettingsScreen extends Component {
                     </Right>
                 </Header>
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text> SettingsScreen </Text>
                 </View>
             </View>
         );

@@ -54,7 +54,7 @@ class ContactScreen extends Component {
                                     />
                                     <Text>
                                         Chat
-                                        </Text>
+                                    </Text>
                                 </View>
                             </View>
                         </Container>
