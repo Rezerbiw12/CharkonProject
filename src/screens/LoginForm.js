@@ -3,9 +3,10 @@ import { View, Text, TextInput, ActivityIndicator } from 'react-native';
 import { Container, Header, Left, Right, Icon, Title, Button } from 'native-base'
 import CardStyle from '../component/CardStyle'
 import firebase from 'firebase'
+import config from '../config/config';
 class LoginForm extends Component {
     state = {
-        email: 'biwzaza141@hotmail.com',
+        email: 'biwkabpom141@hotmail.com',
         password: 'biwzaza141',
         error: '',
         loading: false

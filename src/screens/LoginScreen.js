@@ -4,6 +4,7 @@ import { Container, Header, Left, Right, Icon, Title, Button } from 'native-base
 import CardStyle from '../component/CardStyle'
 import LoginForm from '../screens/LoginForm'
 import firebase from 'firebase'
+import config from '../config/config';
 
 class LoginScreen extends Component {
   static navigationOptions = {
@@ -13,15 +14,15 @@ class LoginScreen extends Component {
   }
   state = { loggedIn: null };
   componentDidMount() {
-    firebase.database().ref('Orders/User2/Item1').set(
-      {
-        Addons: 'วิปครีม'
-      }
-    ).then(() => {
-      console.log('INSERTED!')
-    }).catch((error) => {
-      console.log(error)
-    });
+    // const config = {
+    //   apiKey: "AIzaSyBETr7uRGiSSN9iJfo6bNphceEzcbYEoPg",
+    //   authDomain: "charkononline.firebaseapp.com",
+    //   databaseURL: "https://charkononline.firebaseio.com",
+    //   projectId: "charkononline",
+    //   storageBucket: "charkononline.appspot.com",
+    //   messagingSenderId: "973690432366"
+    // };
+    // firebase.initializeApp(config);
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
@@ -30,7 +31,6 @@ class LoginScreen extends Component {
       }
     });
   }
-
   renderFormLogin() {
     if (this.state.loggedIn == true) {
       return (
@@ -54,7 +54,7 @@ class LoginScreen extends Component {
           <Header>
             <Right>
               <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Title>Login</Title>
+                <Title>Wellcome</Title>
               </View>
               <Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />
             </Right>
@@ -66,7 +66,7 @@ class LoginScreen extends Component {
 
   render(props) {
     return (
-      <View >
+      <View>
         {this.renderFormLogin()}
       </View>
     );
@@ -81,4 +81,3 @@ const styles = {
   }
 }
 export default LoginScreen;
-

@@ -19,7 +19,7 @@ import {
 export default class App extends Component {
   render() {
     return (
-      <AppDrawerNavigator />
+      <AppDrawerNavigator/>
     );
   }
 }
@@ -35,7 +35,7 @@ const CustomDrawerComponent = (props) => (
 )
 
 const AppDrawerNavigator = createDrawerNavigator({
-  Home: HomeScreen,
+  Homes: HomeScreen,
   Settings: SettingsScreen,
   Contact: ContactScreen,
   Additional: AdditionalScreen,
