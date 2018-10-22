@@ -7,19 +7,45 @@ import AlbumDetail from '../component/AlbumDetail'
 import firebase from 'firebase'
 
 class HomeScreen extends Component {
-    state = { albums: [] }
+    state = { albums: [],Addons:[{ status:'',message:''}]}
     readUserData() {
         firebase.database().ref('Product/').on('value', function (snapshot) {
             console.log('data------',snapshot.val())
         });
     }
+    WriteUserData(){
+        firebase.database().ref('Orders/Users3/Item1').set(
+            {
+                
+                status:'ส่งแล้ว',
+                message:'หวานน้อย'
+            }
+        )
+        firebase.database().ref('Orders/Users3/Item1/Addons/Addons3').set(
+            {
+                
+                Name:'ไข่มุก',
+                Price:'5'
+            }
+        )
+        firebase.database().ref('Orders/Users3/Item1/Product1').set(
+            {
+                
+                Discription:'เย็น',
+                Name:'ชานม',
+                Price:'20'
+            }
+        ).then(()=>{
+            console.log('INSERTED')
+        }).catch((error)=>{
+            console.log(error)
+        });
+    }
     componentWillMount() {
-       
+       this.WriteUserData()
         axios.get('https://rallycoding.herokuapp.com/api/music_albums')
         .then(response => this.setState({ albums: response.data }));
-
         this.readUserData() 
-
       }
       renderAlbums() {
         return this.state.albums.map(album => 
