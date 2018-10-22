@@ -14,15 +14,6 @@ class LoginScreen extends Component {
   }
   state = { loggedIn: null };
   componentDidMount() {
-    // const config = {
-    //   apiKey: "AIzaSyBETr7uRGiSSN9iJfo6bNphceEzcbYEoPg",
-    //   authDomain: "charkononline.firebaseapp.com",
-    //   databaseURL: "https://charkononline.firebaseio.com",
-    //   projectId: "charkononline",
-    //   storageBucket: "charkononline.appspot.com",
-    //   messagingSenderId: "973690432366"
-    // };
-    // firebase.initializeApp(config);
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });

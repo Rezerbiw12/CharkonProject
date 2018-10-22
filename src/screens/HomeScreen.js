@@ -4,12 +4,22 @@ import { Container, Header, Left, Right, Icon, Title, Footer, FooterTab, Button,
 import { SearchBar } from 'react-native-elements'
 import axios from 'axios';
 import AlbumDetail from '../component/AlbumDetail'
+import firebase from 'firebase'
 
 class HomeScreen extends Component {
     state = { albums: [] }
+    readUserData() {
+        firebase.database().ref('Product/').on('value', function (snapshot) {
+            console.log('data------',snapshot.val())
+        });
+    }
     componentWillMount() {
+       
         axios.get('https://rallycoding.herokuapp.com/api/music_albums')
         .then(response => this.setState({ albums: response.data }));
+
+        this.readUserData() 
+
       }
       renderAlbums() {
         return this.state.albums.map(album => 
