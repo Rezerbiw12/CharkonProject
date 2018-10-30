@@ -7,6 +7,7 @@ import { Icon as ElementIcon, Button as ElementButton } from 'react-native-eleme
 import CardStyle from '../component/CardSection'
 import RadioGroup from 'react-native-radio-buttons-group';
 import CheckBox from 'react-native-checkbox';
+import CardSection from '../component/CardSection'
 
 class ContactScreen extends Component {
     constructor() {
@@ -59,24 +60,32 @@ class ContactScreen extends Component {
                 <Button onPress={() => this.refs.modal3.open()} style={styles.btn}>But Now!!</Button>
                 <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"}>
                     <View style={styles.containerMain}>
-                        <Text style={styles.text}>รายละเอียดสินค้า</Text>
-                        <View style={styles.container}>
-                            <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
-                            <Text style={styles.valueText}>
-                                เพิ่ม = {selectedButton}
-                            </Text>
-                            <CheckBox
-                                label='หวานปกติ'
-                                checked={true}
-                                onChange={(checked) => console.log('I am checked', checked)}
-                            />
+                        <CardStyle>
+                            <Text style={styles.text}> รายละเอียดสินค้า</Text>
+                        </CardStyle>
+           
+                            <CardStyle>
+                                <View style={styles.container}>
+                                <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
+                                <Text style={styles.valueText}>
+                                    เพิ่ม = {selectedButton}
+                                </Text>
+                                </View>
+                            </CardStyle>
+                            <CardStyle>
+                                <CheckBox
+                                    label='หวานปกติ'
+                                    checked={true}
+                                    onChange={(checked) => console.log('I am checked', checked)}
+                                />
+                            </CardStyle>
                             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end', padding: 10 }}>
                                 <ElementButton onPress={() => this.refs.modal3.close()}
                                     large
                                     icon={{ name: 'envira', type: 'font-awesome' }}
                                     title='ยืนยัน' />
                             </View>
-                        </View>
+            
                     </View>
                 </Modal>
                 <Button onPress={() => this.refs.modal6.open()} style={styles.btn}>ติดต่อเรา</Button>
@@ -170,7 +179,9 @@ const styles = StyleSheet.create({
         fontSize: 22
     },
     containerMain: {
-        flexDirection: 'column'
+        flexDirection: 'column',
+        justifyContent:'center',
+        alignItems:'center'
     },
     containerInput: {
         flexDirection: 'row',
