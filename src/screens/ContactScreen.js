@@ -15,22 +15,17 @@ class ContactScreen extends Component {
         this.state = {
             data: [
                 {
-                    label: 'ไซรัป เพิ่ม 5 บาท',
-                    value: "ไซรัป",
+                    label: 'หวานน้อย',
+                    value: "หวานน้อย",
                 },
                 {
-                    label: 'วิปปิ้งครีม เพิ่ม 10 บาท',
-                    value: "วิปปิ้งครีม",
+                    label: 'หวานปกติ',
+                    value: "หวานปกติ",
                 },
                 {
-                    label: 'เยลลี่ เพิ่ม 5 บาท',
-                    value: "เยลลี่",
+                    label: 'หวานมาก',
+                    value: "หวานมาก",
                 },
-                {
-                    label: 'ไข่มุก เพิ่ม 5 บาท',
-                    value: "ไข่มุก",
-                },
-
             ],
             isOpen: false,
             isDisabled: false,
@@ -68,16 +63,29 @@ class ContactScreen extends Component {
                                 <View style={styles.container}>
                                 <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
                                 <Text style={styles.valueText}>
-                                    เพิ่ม = {selectedButton}
+                                    ความหวาน = {selectedButton}
                                 </Text>
                                 </View>
                             </CardStyle>
                             <CardStyle>
+                                <View style={{flex:1,flexDirection:'column',alignItems:'center'}}>
                                 <CheckBox
-                                    label='หวานปกติ'
-                                    checked={true}
-                                    onChange={(checked) => console.log('I am checked', checked)}
+                                    label='ไซรัป 5 บาท'
+                                    onChange={(checked) => console.log('I am ไซรัป', checked)}
                                 />
+                                <CheckBox
+                                    label='วิปปิ้งครีม 10 บาท'
+                                    onChange={(checked) => console.log('I am วิปปิ้งครีม', checked)}
+                                />
+                                <CheckBox
+                                    label='ไข่มุก 5 บาท'
+                                    onChange={(checked) => console.log('I am ไข่มุก', checked)}
+                                />
+                                <CheckBox
+                                    label='เยลลี่ 5 บาท'
+                                    onChange={(checked) => console.log('I am เยลลี่', checked)}
+                                />
+                                </View>
                             </CardStyle>
                             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end', padding: 10 }}>
                                 <ElementButton onPress={() => this.refs.modal3.close()}
