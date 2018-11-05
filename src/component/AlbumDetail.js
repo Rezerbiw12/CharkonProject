@@ -5,8 +5,12 @@ import CardStyle from './CardStyle';
 import CardSection from './CardSection'
 import ButtonStyle from './ButtonStyle'
 
+
 const AlbumDetail = ({ album }) => {
-    const { title, artist, thumbnail_image, image, url } = album;
+    console.log('llllll');
+    
+    const { title, artist, thumbnail_image, image, url,Discription,Name,Price} = album;
+    console.log('-----',{Name});
     const {
         thumbnailStyle,
         headerContentStyle,
@@ -14,10 +18,16 @@ const AlbumDetail = ({ album }) => {
         headerTextStyle,
         imageStyle
     } = styles;
+
+    
     return (
+        
         <CardStyle>
             <CardSection>
-                <View style={thumbnailContainerStyle}>
+                <Text>
+                    {Name}
+                </Text>
+                {/* <View style={thumbnailContainerStyle}>
                     <Image
                         style={thumbnailStyle}
                         source={{ uri: thumbnail_image }}
@@ -37,7 +47,7 @@ const AlbumDetail = ({ album }) => {
             <CardSection>
                 <ButtonStyle onPress={() => Linking.openURL(url)}>
                     Buy Now!!!
-                </ButtonStyle>
+                </ButtonStyle> */}
             </CardSection>
         </CardStyle>
     );

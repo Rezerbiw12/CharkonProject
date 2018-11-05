@@ -7,10 +7,20 @@ import AlbumDetail from '../component/AlbumDetail'
 import firebase from 'firebase'
 
 class HomeScreen extends Component {
-    state = { albums: [],Addons:[{ status:'',message:''}]}
+    state = { albums: [],Addons:[{ status:'',message:''}],Discription:'',Name:'',Price:'',data:[]}
     readUserData() {
         firebase.database().ref('Product/').on('value', function (snapshot) {
-            console.log('data------',snapshot.val())
+            var data =[]
+            snapshot.forEach((child) => {
+                data.push({
+                  Name:child.val().Name,
+                  Discription:child.val().Discription,
+                  Price:child.val().Price,
+                });
+                })
+
+            console.log('data------',data)
+            this.setState({data:snapshot.data})
         });
     }
     WriteUserData(){
@@ -42,14 +52,18 @@ class HomeScreen extends Component {
         });
     }
     componentWillMount() {
-       this.WriteUserData()
+        this.WriteUserData()
         axios.get('https://rallycoding.herokuapp.com/api/music_albums')
         .then(response => this.setState({ albums: response.data }));
         this.readUserData() 
       }
       renderAlbums() {
-        return this.state.albums.map(album => 
-            <AlbumDetail key={album.title} album={album} />
+        // return this.state.albums.map(album => 
+        //     <AlbumDetail key={album.title} album={album} />
+        // );
+
+        return this.state.data.map(album => 
+            <AlbumDetail Discription={album.Discription} Name={album.Name} Price={album.Price} />
         );
       }
     static navigationOptions = {
@@ -58,7 +72,7 @@ class HomeScreen extends Component {
         )
     }
     render() {
-        console.log(this.state);
+        console.log('--------',this.state.Discription);
         return (
             <Container>
                 <Header>

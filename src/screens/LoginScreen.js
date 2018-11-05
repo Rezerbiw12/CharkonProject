@@ -5,6 +5,7 @@ import CardStyle from '../component/CardStyle'
 import LoginForm from '../screens/LoginForm'
 import firebase from 'firebase'
 import config from '../config/config';
+import AdminScreen from '../screens/AdminScreen'
 
 class LoginScreen extends Component {
   static navigationOptions = {
@@ -45,7 +46,7 @@ class LoginScreen extends Component {
           <Header>
             <Right>
               <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Title>Wellcome</Title>
+                <Title>Login</Title>
               </View>
               <Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />
             </Right>

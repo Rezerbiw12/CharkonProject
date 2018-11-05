@@ -58,17 +58,17 @@ class ContactScreen extends Component {
                         <CardStyle>
                             <Text style={styles.text}> รายละเอียดสินค้า</Text>
                         </CardStyle>
-           
-                            <CardStyle>
-                                <View style={styles.container}>
+
+                        <CardStyle>
+                            <View style={styles.container}>
                                 <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
                                 <Text style={styles.valueText}>
                                     ความหวาน = {selectedButton}
                                 </Text>
-                                </View>
-                            </CardStyle>
-                            <CardStyle>
-                                <View style={{flex:1,flexDirection:'column',alignItems:'center'}}>
+                            </View>
+                        </CardStyle>
+                        <CardStyle>
+                            <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
                                 <CheckBox
                                     label='ไซรัป 5 บาท'
                                     onChange={(checked) => console.log('I am ไซรัป', checked)}
@@ -85,15 +85,16 @@ class ContactScreen extends Component {
                                     label='เยลลี่ 5 บาท'
                                     onChange={(checked) => console.log('I am เยลลี่', checked)}
                                 />
-                                </View>
-                            </CardStyle>
+                            </View>
+                        </CardStyle>
+                        <CardStyle>
                             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end', padding: 10 }}>
                                 <ElementButton onPress={() => this.refs.modal3.close()}
                                     large
                                     icon={{ name: 'envira', type: 'font-awesome' }}
                                     title='ยืนยัน' />
                             </View>
-            
+                        </CardStyle>
                     </View>
                 </Modal>
                 <Button onPress={() => this.refs.modal6.open()} style={styles.btn}>ติดต่อเรา</Button>
@@ -188,8 +189,8 @@ const styles = StyleSheet.create({
     },
     containerMain: {
         flexDirection: 'column',
-        justifyContent:'center',
-        alignItems:'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     containerInput: {
         flexDirection: 'row',
