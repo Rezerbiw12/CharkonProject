@@ -6,11 +6,9 @@ import CardSection from './CardSection'
 import ButtonStyle from './ButtonStyle'
 
 
-const AlbumDetail = ({ album }) => {
-    console.log('llllll');
-    
-    const { title, artist, thumbnail_image, image, url,Discription,Name,Price} = album;
-    console.log('-----',{Name});
+const AlbumDetail =  props => {    
+    const { Discription, Name, Price} = props; 
+
     const {
         thumbnailStyle,
         headerContentStyle,
@@ -77,6 +75,6 @@ const styles = {
     }
 };
 AlbumDetail.propTypes = {
-    album: PropTypes.object.isRequired
+    // album: PropTypes.object.isRequired
 };
 export default AlbumDetail;

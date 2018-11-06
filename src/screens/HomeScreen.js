@@ -5,11 +5,15 @@ import { SearchBar } from 'react-native-elements'
 import axios from 'axios';
 import AlbumDetail from '../component/AlbumDetail'
 import firebase from 'firebase'
+import { YellowBox } from 'react-native';
+
+
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 class HomeScreen extends Component {
-    state = { albums: [],Addons:[{ status:'',message:''}],Discription:'',Name:'',Price:'',data:[]}
-    readUserData() {
-        firebase.database().ref('Product/').on('value', function (snapshot) {
+    state = { albums: [],Addons:[{ status:'',message:''}], Discription:'', Name:'', Price:'',data: []}
+    readUserData = () =>  {
+        firebase.database().ref('Product/').on('value', (snapshot) => {
             var data =[]
             snapshot.forEach((child) => {
                 data.push({
@@ -17,10 +21,10 @@ class HomeScreen extends Component {
                   Discription:child.val().Discription,
                   Price:child.val().Price,
                 });
-                })
 
-            console.log('data------',data)
-            this.setState({data:snapshot.data})
+             })
+             console.log('data------',data)
+            this.setState({data})
         });
     }
     WriteUserData(){
@@ -57,13 +61,14 @@ class HomeScreen extends Component {
         .then(response => this.setState({ albums: response.data }));
         this.readUserData() 
       }
-      renderAlbums() {
+    
+    renderAlbums() {
         // return this.state.albums.map(album => 
         //     <AlbumDetail key={album.title} album={album} />
         // );
-
-        return this.state.data.map(album => 
-            <AlbumDetail Discription={album.Discription} Name={album.Name} Price={album.Price} />
+        // console.log('data12351', this.state.data)
+        return this.state.data.map(menu => 
+            <AlbumDetail key={menu.Name} Description={menu.Discription} Name={menu.Name} Price={menu.Price} />
         );
       }
     static navigationOptions = {
@@ -72,7 +77,7 @@ class HomeScreen extends Component {
         )
     }
     render() {
-        console.log('--------',this.state.Discription);
+        // console.log('--------',this.state.Discription);
         return (
             <Container>
                 <Header>
@@ -93,8 +98,8 @@ class HomeScreen extends Component {
                          />
                 </View>
                 <View style={{ flex:1}}>
-                <ScrollView>
-                {this.renderAlbums()}
+                <ScrollView>  
+                    {this.renderAlbums()}
                 </ScrollView>
                 </View>
             </Container>
