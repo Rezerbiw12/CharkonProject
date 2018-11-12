@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import CardStyle from './CardStyle';
 import CardSection from './CardSection'
 import ButtonStyle from './ButtonStyle'
+import ButtonDetail from './ButtonDetail'
 
 
-const AlbumDetail =  props => {    
-    const { Discription, Name, Price} = props; 
+const AlbumDetail = props => {
+    const { Discription, Name, Price } = props;
 
     const {
         thumbnailStyle,
@@ -17,50 +18,42 @@ const AlbumDetail =  props => {
         imageStyle
     } = styles;
 
-    
     return (
-        
+
         <CardStyle>
-            <CardSection>
-                <Text>
-                    {Name}
-                </Text>
-                {/* <View style={thumbnailContainerStyle}>
+                <CardSection>
+                <View style={headerContentStyle}>
+                    <Text style={headerTextStyle}>{Name}</Text>
+                </View>
+                </CardSection>
+                <CardSection>
+                <View style={thumbnailContainerStyle}>
                     <Image
                         style={thumbnailStyle}
-                        source={{ uri: thumbnail_image }}
+                        source={require('../../image/default.png')}
                     />
                 </View>
-                <View style={headerContentStyle}>
-                    <Text style={headerTextStyle}>{title}</Text>
-                    <Text>{artist}</Text>
-                </View>
-            </CardSection>
-            <CardSection>
-                <Image
-                    style={imageStyle}
-                    source={{ uri: image }}
-                />
-            </CardSection>
-            <CardSection>
-                <ButtonStyle onPress={() => Linking.openURL(url)}>
+                </CardSection>
+                <ButtonStyle onPress={ButtonDetail}>
                     Buy Now!!!
-                </ButtonStyle> */}
-            </CardSection>
+                </ButtonStyle>
         </CardStyle>
     );
 };
 const styles = {
     headerContentStyle: {
         flexDirection: 'column',
-        justifyContent: 'space-around'
+        justifyContent: 'center',
+        alignItems:'center'
     },
     headerTextStyle: {
-        fontSize: 18
+        fontSize: 32,
+        fontWeight: 'bold'
     },
     thumbnailStyle: {
-        height: 50,
-        width: 50
+        height: 300,
+        width: 300,
+        margin : 20
     },
     thumbnailContainerStyle: {
         justifyContent: 'center',
