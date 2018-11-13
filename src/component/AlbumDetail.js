@@ -1,46 +1,50 @@
 import React, { Component } from 'react';
-import { Text, View, Image, Linking } from 'react-native';
-import PropTypes from 'prop-types';
+import { Text, View, Image, Linking, StyleSheet } from 'react-native';
 import CardStyle from './CardStyle';
 import CardSection from './CardSection'
 import ButtonStyle from './ButtonStyle'
 import ButtonDetail from './ButtonDetail'
 
 
-const AlbumDetail = props => {
-    const { Discription, Name, Price } = props;
+class AlbumDetail extends Component {
 
-    const {
-        thumbnailStyle,
-        headerContentStyle,
-        thumbnailContainerStyle,
-        headerTextStyle,
-        imageStyle
-    } = styles;
 
-    return (
+    // const {Discription, Name, Price} = this.props;
 
-        <CardStyle>
+    constructor(props) {
+        super();        
+    }
+
+    renderButtonDetail = () => {
+        console.log('Render button detail')
+        return ( <ButtonDetail /> );
+    }
+
+    render() {
+        return (
+            <CardStyle>
                 <CardSection>
-                <View style={headerContentStyle}>
-                    <Text style={headerTextStyle}>{Name}</Text>
-                </View>
+                    <View style={styles.headerContentStyle}>
+                        <Text style={styles.headerTextStyle}>{this.props.Name}</Text>
+                    </View>
                 </CardSection>
                 <CardSection>
-                <View style={thumbnailContainerStyle}>
-                    <Image
-                        style={thumbnailStyle}
-                        source={require('../../image/default.png')}
-                    />
-                </View>
+                    <View style={styles.thumbnailContainerStyle}>
+                        <Image
+                            style={styles.thumbnailStyle}
+                            source={require('../../image/default.png')}
+                        />
+                    </View>
                 </CardSection>
-                <ButtonStyle onPress={ButtonDetail}>
+                <ButtonStyle onPress={() => this.renderButtonDetail()}>
                     Buy Now!!!
                 </ButtonStyle>
-        </CardStyle>
-    );
-};
-const styles = {
+            </CardStyle>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
     headerContentStyle: {
         flexDirection: 'column',
         justifyContent: 'center',
@@ -66,7 +70,8 @@ const styles = {
         flex: 1,
         width: null
     }
-};
+})
+
 AlbumDetail.propTypes = {
     // album: PropTypes.object.isRequired
 };
