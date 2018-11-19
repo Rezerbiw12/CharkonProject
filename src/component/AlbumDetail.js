@@ -55,7 +55,6 @@ class AlbumDetail extends Component {
                 <ButtonStyle onPress={() => this.refs.modal3.open()} style={styles.btn}>
                     Buy Now!!!
                 </ButtonStyle>
-                <View>
                     <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"}>
                         <View style={styles.containerMain}>
                             <CardSection>
@@ -99,7 +98,6 @@ class AlbumDetail extends Component {
                             </CardSection>
                         </View>
                     </Modal>
-                </View>
             </CardStyle>
 
         );
