@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, ActivityIndicator,navigator} from 'react-native';
 import { Container, Header, Left, Right, Icon, Title, Button } from 'native-base'
 import CardStyle from '../component/CardStyle'
+import {navigate, DrawerItems } from 'react-navigation'
 import firebase from 'firebase'
-import AdminScreen from './AdminScreen';
 class LoginForm extends Component {
     state = {
         email: 'biwkabpom141@hotmail.com',
@@ -16,23 +16,15 @@ class LoginForm extends Component {
         this.setState({ loading: true });
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
             .then(() => {
-                this.props.navigator.push({
-                    component: AdminScreen
-                })
-                // this.setState({ loading: false });
-                // alert("ยินดีต้อนรับ  " + email + " เข้าสูู่ชาคอนอนไลน์ ");
+                this.setState({ loading: false });
+                alert("ยินดีต้อนรับ  " + email + " เข้าสูู่ชาคอนอนไลน์ ");
+                this.props.navigaton.navigate('Admin')
             })
             .catch((msgError) => {
                 this.setState({ loading: false });
                 alert(msgError.message);
             });
     }
-    Linker(comp){
-        this.props.navigator.push({
-            component:comp
-        })
-    }
-    
     renderButton(){
         if(this.state.loading){
             return(<ActivityIndicator size='small'/>);

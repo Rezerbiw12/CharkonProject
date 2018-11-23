@@ -28,7 +28,6 @@ class ContactScreen extends Component {
                         <Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />
                     </Right>
                 </Header>
-                <Button onPress={() => this.refs.modal3.open()} style={styles.btn}>But Now!!</Button>
                 <Button onPress={() => this.refs.modal6.open()} style={styles.btn}>ติดต่อเรา</Button>
                 <Modal style={[styles.modal4]} position={"bottom"} ref={"modal6"} swipeArea={20}>
                     <Container>

@@ -10,6 +10,7 @@ import { YellowBox } from 'react-native';
 
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
+
 class HomeScreen extends Component {
     state = { albums: [],Addons:[{ status:'',message:''}], Discription:'', Name:'', Price:'',data: []}
     readUserData = () =>  {

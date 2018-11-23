@@ -20,6 +20,7 @@
     "react-native-modalbox": "^1.6.0",
     "react-native-radio-buttons-group": "^1.0.7",
     "react-native-restart": "0.0.7",
+    "react-native-simple-dialogs": "^1.0.0",
     "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.6.2"
   },

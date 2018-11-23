@@ -16,6 +16,7 @@ import {
   Dimensions,
   Image
 } from 'react-native';
+import AdminScreen from './src/screens/AdminScreen';
 export default class App extends Component {
   render() {
     return (
@@ -39,7 +40,8 @@ const AppDrawerNavigator = createDrawerNavigator({
   Settings: SettingsScreen,
   Contact: ContactScreen,
   Additional: AdditionalScreen,
-  CreateAndLogin:LoginScreen
+  CreateAndLogin:LoginScreen,
+  Admin:AdminScreen,
 }, {
     contentComponent: CustomDrawerComponent,
     contentOptions: {
