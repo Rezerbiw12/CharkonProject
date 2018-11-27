@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, ActivityIndicator,navigator} from 'react-native';
 import { Container, Header, Left, Right, Icon, Title, Button } from 'native-base'
 import CardStyle from '../component/CardStyle'
+import {navigate, DrawerItems } from 'react-navigation'
 import firebase from 'firebase'
-import AdminScreen from './AdminScreen';
 class LoginForm extends Component {
     state = {
         email: 'biwkabpom141@hotmail.com',
@@ -18,6 +18,10 @@ class LoginForm extends Component {
             .then(() => {
                 this.setState({ loading: false });
                 alert("ยินดีต้อนรับ  " + email + " เข้าสูู่ชาคอนอนไลน์ ");
+<<<<<<< HEAD
+=======
+                this.props.navigaton.navigate('Admin')
+>>>>>>> 6e8dd19b0e3093a664fabd76514170d85ffd1d33
             })
             .catch((msgError) => {
                 this.setState({ loading: false });

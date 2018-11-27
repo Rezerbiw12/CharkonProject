@@ -10,8 +10,9 @@ import { YellowBox } from 'react-native';
 
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
+
 class HomeScreen extends Component {
-    state = { albums: [],Addons:[{ status:'',message:''}], Discription:'', Name:'', Price:'',data: []}
+    state = {Discription:'', Name:'', Price:'',data: []}
     readUserData = () =>  {
         firebase.database().ref('Product/').on('value', (snapshot) => {
             var data =[]
@@ -63,10 +64,6 @@ class HomeScreen extends Component {
       }
     
     renderAlbums() {
-        // return this.state.albums.map(album => 
-        //     <AlbumDetail key={album.title} album={album} />
-        // );
-        // console.log('data12351', this.state.data)
         return this.state.data.map(menu => 
             <AlbumDetail key={menu.Name} Description={menu.Discription} Name={menu.Name} Price={menu.Price} />
         );

@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { createDrawerNavigator, DrawerItems } from 'react-navigation'
+import { createDrawerNavigator, DrawerItems,StackNavigator,createStackNavigator} from 'react-navigation'
 import HomeScreen from './src/screens/HomeScreen'
 import SettingsScreen from './src/screens/SettingsScreen'
 import ContactScreen from './src/screens/ContactScreen'
 import AdditionalScreen from './src/screens/AdditionalScreen'
 import LoginScreen from './src/screens/LoginScreen'
+<<<<<<< HEAD
+=======
+import ListMenu from './src/screens/ListMenu'
+>>>>>>> 6e8dd19b0e3093a664fabd76514170d85ffd1d33
 import {
   Platform,
   StyleSheet,
@@ -15,6 +19,7 @@ import {
   Dimensions,
   Image
 } from 'react-native';
+import AdminScreen from './src/screens/AdminScreen';
 export default class App extends Component {
   render() {
     return (
@@ -22,6 +27,11 @@ export default class App extends Component {
     );
   }
 }
+const navigation = createStackNavigator({
+  ListMenu:{
+    screen:ListMenu,
+  }
+})
 const CustomDrawerComponent = (props) => (
   <SafeAreaView style={{ flex: 1 }}>
     <View style={{ height: 150, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
@@ -38,7 +48,8 @@ const AppDrawerNavigator = createDrawerNavigator({
   Settings: SettingsScreen,
   Contact: ContactScreen,
   Additional: AdditionalScreen,
-  CreateAndLogin:LoginScreen
+  CreateAndLogin:LoginScreen,
+  Admin:AdminScreen,
 }, {
     contentComponent: CustomDrawerComponent,
     contentOptions: {

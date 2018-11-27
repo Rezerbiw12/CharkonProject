@@ -3,7 +3,6 @@ import { Text, View, Image, Linking, StyleSheet } from 'react-native'
 import CardStyle from './CardStyle'
 import CardSection from './CardSection'
 import ButtonStyle from './ButtonStyle'
-import ButtonDetail from './ButtonDetail'
 import Modal from 'react-native-modalbox'
 import RadioGroup from 'react-native-radio-buttons-group'
 import CheckBox from 'react-native-checkbox'
@@ -99,7 +98,6 @@ class AlbumDetail extends Component {
                         </View>
                     </Modal>
             </CardStyle>
-
         );
     }
 }
