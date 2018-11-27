@@ -24,7 +24,7 @@ class AdminScreen extends Component {
         <Content style={{ padding: 20 }}>
           <View>
             <View style={{ padding: 20 }}>
-              <NewButton block success>
+              <NewButton block success onPress={()=>this.props.navigation.navigate("ListMenu")}>
                 <NewText style={{ fontSize: 20 }}>จัดการออเดอร์</NewText>
               </NewButton>
             </View>
