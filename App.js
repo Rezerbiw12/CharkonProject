@@ -5,7 +5,6 @@ import SettingsScreen from './src/screens/SettingsScreen'
 import ContactScreen from './src/screens/ContactScreen'
 import AdditionalScreen from './src/screens/AdditionalScreen'
 import LoginScreen from './src/screens/LoginScreen'
-import firebase from 'firebase'
 import {
   Platform,
   StyleSheet,

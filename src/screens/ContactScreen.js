@@ -4,10 +4,6 @@ import Button from 'react-native-button';
 import Modal from 'react-native-modalbox';
 import { Container, Header, Left, Right, Icon, Title, Footer, FooterTab, Button as NewButton, Badge, Text as NewText } from 'native-base'
 import { Icon as ElementIcon, Button as ElementButton } from 'react-native-elements'
-import CardSection from '../component/CardSection'
-import RadioGroup from 'react-native-radio-buttons-group';
-import CheckBox from 'react-native-checkbox';
-//import CardSection from '../component/CardSection'
 
 class ContactScreen extends Component { 
     onPress = data => this.setState({ data });
@@ -28,7 +24,6 @@ class ContactScreen extends Component {
                         <Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />
                     </Right>
                 </Header>
-                <Button onPress={() => this.refs.modal3.open()} style={styles.btn}>But Now!!</Button>
                 <Button onPress={() => this.refs.modal6.open()} style={styles.btn}>ติดต่อเรา</Button>
                 <Modal style={[styles.modal4]} position={"bottom"} ref={"modal6"} swipeArea={20}>
                     <Container>

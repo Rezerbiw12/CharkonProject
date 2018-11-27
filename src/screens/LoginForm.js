@@ -16,23 +16,14 @@ class LoginForm extends Component {
         this.setState({ loading: true });
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
             .then(() => {
-                this.props.navigator.push({
-                    component: AdminScreen
-                })
-                // this.setState({ loading: false });
-                // alert("ยินดีต้อนรับ  " + email + " เข้าสูู่ชาคอนอนไลน์ ");
+                this.setState({ loading: false });
+                alert("ยินดีต้อนรับ  " + email + " เข้าสูู่ชาคอนอนไลน์ ");
             })
             .catch((msgError) => {
                 this.setState({ loading: false });
                 alert(msgError.message);
             });
     }
-    Linker(comp){
-        this.props.navigator.push({
-            component:comp
-        })
-    }
-    
     renderButton(){
         if(this.state.loading){
             return(<ActivityIndicator size='small'/>);
