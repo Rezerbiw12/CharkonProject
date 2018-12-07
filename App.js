@@ -5,10 +5,7 @@ import SettingsScreen from './src/screens/SettingsScreen'
 import ContactScreen from './src/screens/ContactScreen'
 import AdditionalScreen from './src/screens/AdditionalScreen'
 import LoginScreen from './src/screens/LoginScreen'
-<<<<<<< HEAD
-=======
 import ListMenu from './src/screens/ListMenu'
->>>>>>> 6e8dd19b0e3093a664fabd76514170d85ffd1d33
 import {
   Platform,
   StyleSheet,

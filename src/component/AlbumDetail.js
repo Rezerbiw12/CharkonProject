@@ -47,7 +47,7 @@ class AlbumDetail extends Component {
                     <View style={styles.thumbnailContainerStyle}>
                         <Image
                             style={styles.thumbnailStyle}
-                            source={require('../../image/default.png')}
+                            source={require('../../image/charnom.jpg')}
                         />
                     </View>
                 </CardSection>

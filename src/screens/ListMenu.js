@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
 class ListMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
+  static navigationOptions = {
+    title : 'ListMenu'
+};
   render() {
     return (
       <View>

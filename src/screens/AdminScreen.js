@@ -11,6 +11,7 @@ class AdminScreen extends Component {
     };
   }
   render() {
+    const {navigate}=this.props.navigation
     return (
       <Container>
         <Header>
@@ -24,7 +25,7 @@ class AdminScreen extends Component {
         <Content style={{ padding: 20 }}>
           <View>
             <View style={{ padding: 20 }}>
-              <NewButton block success onPress={()=>this.props.navigation.navigate("ListMenu")}>
+              <NewButton block success onPress={()=>navigate('ListMenu')}>
                 <NewText style={{ fontSize: 20 }}>จัดการออเดอร์</NewText>
               </NewButton>
             </View>
