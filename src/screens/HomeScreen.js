@@ -12,7 +12,7 @@ YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTIm
 
 
 class HomeScreen extends Component {
-    state = {Discription:'', Name:'', Price:'',data: []}
+    state = {url:'',Discription:'', Name:'', Price:'',data: []}
     readUserData = () =>  {
         firebase.database().ref('Product/').on('value', (snapshot) => {
             var data =[]
@@ -21,6 +21,7 @@ class HomeScreen extends Component {
                   Name:child.val().Name,
                   Discription:child.val().Discription,
                   Price:child.val().Price,
+                  url:child.val().url,
                 });
 
              })
@@ -65,7 +66,7 @@ class HomeScreen extends Component {
     
     renderAlbums() {
         return this.state.data.map(menu => 
-            <AlbumDetail key={menu.Name} Description={menu.Discription} Name={menu.Name} Price={menu.Price} />
+            <AlbumDetail key={menu.Name} Description={menu.Discription} Name={menu.Name} Price={menu.Price} url={menu.url}/>
         );
       }
     static navigationOptions = {

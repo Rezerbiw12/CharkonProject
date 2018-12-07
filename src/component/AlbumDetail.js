@@ -33,6 +33,7 @@ class AlbumDetail extends Component {
             sliderValue: 0.3,
         };
     }
+    onPress = data => this.setState({ data });
     render() {
         let selectedButton = this.state.data.find(e => e.selected == true);
         selectedButton = selectedButton ? selectedButton.value : this.state.data[0].label;
@@ -47,7 +48,7 @@ class AlbumDetail extends Component {
                     <View style={styles.thumbnailContainerStyle}>
                         <Image
                             style={styles.thumbnailStyle}
-                            source={require('../../image/charnom.jpg')}
+                            source={{uri:this.props.url || "https://firebasestorage.googleapis.com/v0/b/charkononline.appspot.com/o/projectpicture%2Fdefault.png?alt=media&token=00ee7021-905d-4dce-bf38-ee07833beb91"}}
                         />
                     </View>
                 </CardSection>

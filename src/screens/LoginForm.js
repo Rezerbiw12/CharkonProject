@@ -18,7 +18,6 @@ class LoginForm extends Component {
             .then(() => {
                 this.setState({ loading: false });
                 alert("ยินดีต้อนรับ  " + email + " เข้าสูู่ชาคอนอนไลน์ ");
-                this.props.navigaton.navigate('Admin')
             })
             .catch((msgError) => {
                 this.setState({ loading: false });
