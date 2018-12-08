@@ -99,6 +99,15 @@ class HomeScreen extends Component {
                 <ScrollView>  
                     {this.renderAlbums()}
                 </ScrollView>
+        <Footer>
+          <FooterTab>
+            <Button active badge vertical>
+              <Badge ><Text>2</Text></Badge>
+              <Icon active name="basket" />
+              <Text>ตะกร้า</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
                 </View>
             </Container>
         );
