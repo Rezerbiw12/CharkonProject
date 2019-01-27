@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { View, Text,ScrollView } from 'react-native';
 import { Container, Header, Left, Right, Icon, Title, Footer, FooterTab, Button, Badge } from 'native-base'
 import { SearchBar } from 'react-native-elements'
-import axios from 'axios';
-import AlbumDetail from '../component/AlbumDetail'
+import MenuDetail from '../component/MenuDetail'
 import firebase from 'firebase'
 import { YellowBox } from 'react-native';
 
@@ -25,7 +24,7 @@ class HomeScreen extends Component {
                 });
 
              })
-             console.log('data------',data)
+             console.log('DataOfMenu',data)
             this.setState({data})
         });
     }
@@ -59,14 +58,12 @@ class HomeScreen extends Component {
     }
     componentWillMount() {
         this.WriteUserData()
-        axios.get('https://rallycoding.herokuapp.com/api/music_albums')
-        .then(response => this.setState({ albums: response.data }));
         this.readUserData() 
       }
     
-    renderAlbums() {
+    renderMenu() {
         return this.state.data.map(menu => 
-            <AlbumDetail key={menu.Name} Description={menu.Discription} Name={menu.Name} Price={menu.Price} url={menu.url}/>
+            <MenuDetail key={menu.Name} Description={menu.Discription} Name={menu.Name} Price={menu.Price} url={menu.url}/>
         );
       }
     static navigationOptions = {
@@ -97,7 +94,7 @@ class HomeScreen extends Component {
                 </View>
                 <View style={{ flex:1}}>
                 <ScrollView>  
-                    {this.renderAlbums()}
+                    {this.renderMenu()}
                 </ScrollView>
         <Footer>
           <FooterTab>

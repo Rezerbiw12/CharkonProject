@@ -9,7 +9,7 @@ import CheckBox from 'react-native-checkbox'
 import { Icon as ElementIcon, Button as ElementButton } from 'react-native-elements'
 
 
-class AlbumDetail extends Component {
+class MenuDetail extends Component {
     constructor() {
         super();
         this.state = {
@@ -217,8 +217,4 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
 })
-
-AlbumDetail.propTypes = {
-    // album: PropTypes.object.isRequired
-};
-export default AlbumDetail;
+export default MenuDetail;

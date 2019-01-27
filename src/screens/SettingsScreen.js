@@ -1,8 +1,32 @@
 import React, { Component } from 'react';
-import { View, Text ,Platform} from 'react-native';
-import { Container, Header, Left, Right, Icon, Title } from 'native-base'
+import { View, Text,ScrollView } from 'react-native';
+import { Container, Header, Left, Right, Icon, Title, Footer, FooterTab, Button, Badge } from 'native-base'
+import { SearchBar } from 'react-native-elements'
+import MenuDetail from '../component/MenuDetail'
+import firebase from 'firebase'
+import { YellowBox } from 'react-native';
+
+
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 class SettingsScreen extends Component {
+    state = {Name:'', Price:'',data: []}
+    readUserData = () =>  {
+        firebase.database().ref('Orders/').on('value', (snapshot) => {
+            var data =[]
+            snapshot.forEach((child) => {
+                data.push({
+                  Name:child.val().Name,
+                });
+
+             })
+             console.log('DataOfOrder',data)
+            this.setState({data})
+        });
+    }
+    componentWillMount() {
+        this.readUserData() 
+      }
     static navigationOptions = {
         drawerIcon: ({ tintColor }) => (
             <Icon name="settings" style={{ fontSize: 24, color: tintColor }} />
