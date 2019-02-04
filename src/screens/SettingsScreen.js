@@ -16,7 +16,7 @@ class SettingsScreen extends Component {
             var data =[]
             snapshot.forEach((child) => {
                 data.push({
-                  Name:child.val().Name,
+                  Name:child.val().User1,
                 });
 
              })
