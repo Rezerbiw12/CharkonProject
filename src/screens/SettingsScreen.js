@@ -10,13 +10,13 @@ import { YellowBox } from 'react-native';
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 class SettingsScreen extends Component {
-    state = {Name:'', Price:'',data: []}
+    state = {Order:'', Price:'',data: []}
     readUserData = () =>  {
-        firebase.database().ref('Orders/').on('value', (snapshot) => {
+         firebase.database().ref('Orders/').on('value', (snapshot) => {
             var data =[]
             snapshot.forEach((child) => {
                 data.push({
-                  Name:child.val().User1,
+                  Order:child.val().User1,
                 });
 
              })
