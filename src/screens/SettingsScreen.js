@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text,ScrollView } from 'react-native';
 import { Container, Header, Left, Right, Icon, Title, Footer, FooterTab, Button, Badge } from 'native-base'
 import { SearchBar } from 'react-native-elements'
-import MenuDetail from '../component/MenuDetail'
+import OrderDetail from '../component/OrderDetail'
 import firebase from 'firebase'
 import { YellowBox } from 'react-native';
 
@@ -10,22 +10,29 @@ import { YellowBox } from 'react-native';
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 class SettingsScreen extends Component {
-    state = {Order:'', Price:'',data: []}
+    state = {Order:'', Price:'',data: [], Addon:'',Name:'',Topping:''}
     readUserData = () =>  {
-         firebase.database().ref('Orders/').on('value', (snapshot) => {
+         firebase.database().ref('Orders/Users').on('value', (snapshot) => {
             var data =[]
             snapshot.forEach((child) => {
                 data.push({
-                  Order:child.val().User1,
+                  Order:child.val(),
+                  Addon:child.val().Item
                 });
 
              })
              console.log('DataOfOrder',data)
             this.setState({data})
+      
         });
     }
     componentWillMount() {
         this.readUserData() 
+      }
+      renderOrder() {
+        return this.state.data.map((Order,index)=> 
+            <OrderDetail key={index} data2={Order.Addon.Item1.Name} topping={Order.Addon.Item1.Addon}/>
+        );
       }
     static navigationOptions = {
         drawerIcon: ({ tintColor }) => (
@@ -44,6 +51,11 @@ class SettingsScreen extends Component {
                     </Right>
                 </Header>
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ flex:1}}>
+                <ScrollView>  
+                    {this.renderOrder()}
+                </ScrollView>
+                </View>
                 </View>
             </View>
         );

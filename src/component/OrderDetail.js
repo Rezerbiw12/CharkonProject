@@ -14,13 +14,20 @@ class OrderDetail extends Component {
         this.state = {
         };
     }
-
     render() {
+        console.log('----', this.props);
         return (
             <CardStyle>
                 <CardSection>
                     <View style={styles.headerContentStyle}>
-                        <Text style={styles.headerTextStyle}>{this.props.Name}</Text>
+                        <Text style={styles.headerTextStyle}>{this.props.data2}</Text>
+                    </View>
+                </CardSection>
+                <CardSection>
+                    <View>
+                        <Text style={styles.headerTextStyle}>
+                            {this.props.topping}
+                        </Text>
                     </View>
                 </CardSection>
                 <CardSection>
@@ -38,7 +45,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     headerTextStyle: {
-        fontSize: 32,
+        fontSize: 20,
         fontWeight: 'bold'
     },
     thumbnailStyle: {

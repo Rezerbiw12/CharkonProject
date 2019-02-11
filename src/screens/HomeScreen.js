@@ -28,36 +28,36 @@ class HomeScreen extends Component {
             this.setState({data})
         });
     }
-    WriteUserData(){
-        firebase.database().ref('Orders/Users3/Item1').set(
-            {
+    // WriteUserData(){
+    //     firebase.database().ref('Orders/Users3/Item1').set(
+    //         {
                 
-                status:'ส่งแล้ว',
-                message:'หวานน้อย'
-            }
-        )
-        firebase.database().ref('Orders/Users3/Item1/Addons/Addons3').set(
-            {
+    //             status:'ส่งแล้ว',
+    //             message:'หวานน้อย'
+    //         }
+    //     )
+    //     firebase.database().ref('Orders/Users3/Item1/Addons/Addons3').set(
+    //         {
                 
-                Name:'ไข่มุก',
-                Price:'5'
-            }
-        )
-        firebase.database().ref('Orders/Users3/Item1/Product1').set(
-            {
+    //             Name:'ไข่มุก',
+    //             Price:'5'
+    //         }
+    //     )
+    //     firebase.database().ref('Orders/Users3/Item1/Product1').set(
+    //         {
                 
-                Discription:'เย็น',
-                Name:'ชานม',
-                Price:'20'
-            }
-        ).then(()=>{
-            console.log('INSERTED')
-        }).catch((error)=>{
-            console.log(error)
-        });
-    }
+    //             Discription:'เย็น',
+    //             Name:'ชานม',
+    //             Price:'20'
+    //         }
+    //     ).then(()=>{
+    //         console.log('INSERTED')
+    //     }).catch((error)=>{
+    //         console.log(error)
+    //     });
+    // }
     componentWillMount() {
-        this.WriteUserData()
+        //this.WriteUserData()
         this.readUserData() 
       }
     
