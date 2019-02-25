@@ -15,23 +15,34 @@ class OrderDetail extends Component {
         };
     }
     render() {
-        console.log('----', this.props);
+        console.log('sendprops', this.props);
         return (
             <CardStyle>
                 <CardSection>
                     <View style={styles.headerContentStyle}>
-                        <Text style={styles.headerTextStyle}>{this.props.data2}</Text>
+                        <Text style={styles.headerTextStyle}>{this.props.Username}</Text>
                     </View>
                 </CardSection>
                 <CardSection>
                     <View>
-                        <Text style={styles.headerTextStyle}>
-                            {this.props.topping}
+                        <Text style={styles.textForm}>
+                            <Text style={{color:'blue'}}>รายละเอียดของเมนู : </Text>{this.props.Name}  {this.props.Addon} {this.props.Massage}
                         </Text>
+                    </View>
+
+                </CardSection>
+                <CardSection>
+                    <View>
+                        <Text style={styles.textForm}>
+                            <Text style={{color:'blue'}}>ราคา :</Text> {this.props.Price} บาท
+                            </Text>
                     </View>
                 </CardSection>
                 <CardSection>
-                    <View style={styles.thumbnailContainerStyle}>
+                    <View>
+                        <Text style={styles.textForm}>
+                        <Text style={{color:'blue'}}>สถานะ :</Text> <Text style={{color:'red'}}>{this.props.Status} </Text>
+                            </Text>
                     </View>
                 </CardSection>
             </CardStyle>
@@ -46,7 +57,9 @@ const styles = StyleSheet.create({
     },
     headerTextStyle: {
         fontSize: 20,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'green'
+        
     },
     thumbnailStyle: {
         height: 300,
@@ -122,6 +135,7 @@ const styles = StyleSheet.create({
     textForm: {
         fontSize: 18,
         flex: 1,
+        fontWeight: 'bold'
     },
     textInputEmail: {
         padding: 4,
