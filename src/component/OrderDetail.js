@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import { Text, View, Image, Linking, StyleSheet } from 'react-native'
 import CardStyle from './CardStyle'
 import CardSection from './CardSection'
-import ButtonStyle from './ButtonStyle'
-import Modal from 'react-native-modalbox'
-import RadioGroup from 'react-native-radio-buttons-group'
-import CheckBox from 'react-native-checkbox'
-import { Icon as ElementIcon, Button as ElementButton } from 'react-native-elements'
 
 class OrderDetail extends Component {
     constructor(props) {
@@ -15,7 +10,6 @@ class OrderDetail extends Component {
         };
     }
     render() {
-        console.log('sendprops', this.props);
         return (
             <CardStyle>
                 <CardSection>

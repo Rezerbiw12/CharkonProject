@@ -8,11 +8,15 @@ import RadioGroup from 'react-native-radio-buttons-group'
 import CheckBox from 'react-native-checkbox'
 import { Icon as ElementIcon, Button as ElementButton } from 'react-native-elements'
 
+import firebase from 'firebase'
 
 class MenuDetail extends Component {
     constructor() {
         super();
         this.state = {
+            name: 'ชานม',
+            username: 'biw',
+            basePrice: 20,
             data: [
                 {
                     label: 'หวานน้อย',
@@ -21,10 +25,33 @@ class MenuDetail extends Component {
                 {
                     label: 'หวานปกติ',
                     value: "หวานปกติ",
+                    selected: true
                 },
                 {
                     label: 'หวานมาก',
                     value: "หวานมาก",
+                },
+            ],
+            toppings: [
+                {
+                    name: 'ไซรัป',
+                    price: 5,
+                    selected: false,
+                },
+                {
+                    name: 'วิปปิ้งครีม',
+                    price: 10,
+                    selected: false,
+                },
+                {
+                    name: 'ไข่มุก',
+                    price: 5,
+                    selected: false,
+                },
+                {
+                    name: 'เยลลี่',
+                    price: 5,
+                    selected: false,
                 },
             ],
             isOpen: false,
@@ -33,8 +60,41 @@ class MenuDetail extends Component {
             sliderValue: 0.3,
         };
     }
-    onPress = data => this.setState({ data });
+
+    onSubmit = () => {
+        const { name, username, basePrice, data, toppings } = this.state
+        firebase.database().ref('Orders/').push({
+            name,
+            username,
+            level: data.filter(data => data.selected === true).pop().label,
+            status: 'ยังไม่ส่ง',
+            price: this.sumPrice(),
+            toppings: toppings.filter(topping => topping.selected === true).map(topping => topping.name)
+        })
+        this.refs.modal3.close()
+    }
+
+    onPress = data => {
+        console.log(data)
+        this.setState({ data });
+    }
+
+    onToppingChange = (index, checked) => {
+        let { toppings } = this.state
+        toppings[index].selected = checked
+        this.setState({
+            toppings
+        })
+        console.log(this.state.toppings)
+    }
+
+    sumPrice = () => {
+        const { basePrice, toppings } = this.state
+        return basePrice + toppings.filter(topping => topping.selected === true).map(topping => topping.price).reduce((a, b) => a + b, 0)
+    }
+
     render() {
+        const { basePrice, toppings } = this.state
         let selectedButton = this.state.data.find(e => e.selected == true);
         selectedButton = selectedButton ? selectedButton.value : this.state.data[0].label;
         return (
@@ -63,37 +123,26 @@ class MenuDetail extends Component {
                             <CardSection>
                                 <View style={styles.container}>
                                     <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
-                                    <Text style={styles.valueText}>
-                                        ความหวาน = {selectedButton}
-                                    </Text>
                                 </View>
                             </CardSection>
                             <CardSection>
                                 <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
-                                    <CheckBox
-                                        label='ไซรัป 5 บาท'
-                                        onChange={(checked) => console.log('select ไซรัป', checked)}
-                                    />
-                                    <CheckBox
-                                        label='วิปปิ้งครีม 10 บาท'
-                                        onChange={(checked) => console.log('select วิปปิ้งครีม', checked)}
-                                    />
-                                    <CheckBox
-                                        label='ไข่มุก 5 บาท'
-                                        onChange={(checked) => console.log('select ไข่มุก', checked)}
-                                    />
-                                    <CheckBox
-                                        label='เยลลี่ 5 บาท'
-                                        onChange={(checked) => console.log('select เยลลี่', checked)}
-                                    />
+                                    {
+                                        toppings.map((topping, index) => 
+                                            <CheckBox
+                                                label={`${topping.name} (${topping.price} บาท)`}
+                                                onChange={checked => this.onToppingChange(index, checked)}
+                                            />
+                                        )
+                                    }
                                 </View>
                             </CardSection>
                             <CardSection>
                                 <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end', padding: 10 }}>
-                                    <ElementButton onPress={() => this.refs.modal3.close()}
+                                    <ElementButton onPress={() => this.onSubmit()}
                                         large
                                         icon={{ name: 'envira', type: 'font-awesome' }}
-                                        title='ยืนยัน' />
+                                        title={`ยืนยัน (รวมทั้งหมด ${this.sumPrice()} บาท)`} />
                                 </View>
                             </CardSection>
                         </View>
