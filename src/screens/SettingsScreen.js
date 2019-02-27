@@ -49,7 +49,7 @@ class SettingsScreen extends Component {
                 <Header>
                     <Right>
                         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                            <Title>Setting</Title>
+                            <Title>OrderList</Title>
                         </View>
                         <Icon name="menu" onPress={() => this.props.navigation.openDrawer()} />
                     </Right>
