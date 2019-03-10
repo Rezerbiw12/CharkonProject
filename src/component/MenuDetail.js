@@ -7,8 +7,9 @@ import Modal from 'react-native-modalbox'
 import RadioGroup from 'react-native-radio-buttons-group'
 import CheckBox from 'react-native-checkbox'
 import { Icon as ElementIcon, Button as ElementButton } from 'react-native-elements'
-
 import firebase from 'firebase'
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 class MenuDetail extends Component {
     constructor() {

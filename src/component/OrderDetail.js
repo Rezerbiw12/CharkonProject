@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, Image, Linking, StyleSheet } from 'react-native'
 import CardStyle from './CardStyle'
 import CardSection from './CardSection'
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 class OrderDetail extends Component {
     constructor(props) {
@@ -14,13 +16,13 @@ class OrderDetail extends Component {
             <CardStyle>
                 <CardSection>
                     <View style={styles.headerContentStyle}>
-                        <Text style={styles.headerTextStyle}>{this.props.Username}</Text>
+                        <Text style={styles.headerTextStyle}>{this.props.username}</Text>
                     </View>
                 </CardSection>
                 <CardSection>
                     <View>
                         <Text style={styles.textForm}>
-                            <Text style={{color:'blue'}}>รายละเอียดของเมนู : </Text>{this.props.Name}  {this.props.Addon} {this.props.Massage}
+                            <Text style={{color:'blue'}}>รายละเอียดของเมนู : </Text>{this.props.name}  {this.props.topping} {this.props.level}
                         </Text>
                     </View>
 
@@ -28,14 +30,14 @@ class OrderDetail extends Component {
                 <CardSection>
                     <View>
                         <Text style={styles.textForm}>
-                            <Text style={{color:'blue'}}>ราคา :</Text> {this.props.Price} บาท
+                            <Text style={{color:'blue'}}>ราคา :</Text> {this.props.price} บาท
                             </Text>
                     </View>
                 </CardSection>
                 <CardSection>
                     <View>
                         <Text style={styles.textForm}>
-                        <Text style={{color:'blue'}}>สถานะ :</Text> <Text style={{color:'red'}}>{this.props.Status} </Text>
+                        <Text style={{color:'blue'}}>สถานะ :</Text> <Text style={{color:'red'}}>{this.props.status} </Text>
                             </Text>
                     </View>
                 </CardSection>

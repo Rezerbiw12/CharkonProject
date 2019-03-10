@@ -10,18 +10,18 @@ import { YellowBox } from 'react-native';
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 class SettingsScreen extends Component {
-    state = {Massage:'', Price:'',data: [], Addon:'',Name:'',Status:'',Username:''}
+    state = {level:'', price:'',data: [], topping:'',name:'',status:'',username:''}
     readUserData = () =>  {
          firebase.database().ref('Orders/').on('value', (snapshot) => {
             var data =[]
             snapshot.forEach((child) => {
                 data.push({
-                  Massage:child.val().Massage,
-                  Addon:child.val().Addon,
-                  Name:child.val().Name,
-                  Price:child.val().Price,
-                  Status:child.val().Status,
-                  Username:child.val().Username
+                  level:child.val().level,
+                  topping:child.val().topping,
+                  name:child.val().name,
+                  price:child.val().price,
+                  status:child.val().status,
+                  username:child.val().username
                 });
 
              })
@@ -35,7 +35,7 @@ class SettingsScreen extends Component {
       }
       renderOrder() {
         return this.state.data.map((Order,index)=> 
-            <OrderDetail key={index}  Massage={Order.Massage} Addon={Order.Addon} Name={Order.Name} Price={Order.Price} Status={Order.Status} Username={Order.Username}/>
+            <OrderDetail key={index}  level={Order.level} topping={Order.topping} name={Order.name} price={Order.price} status={Order.status} username={Order.username}/>
         );
       }
     static navigationOptions = {
