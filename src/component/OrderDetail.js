@@ -2,14 +2,40 @@ import React, { Component } from 'react';
 import { Text, View, Image, Linking, StyleSheet } from 'react-native'
 import CardStyle from './CardStyle'
 import CardSection from './CardSection'
-import { YellowBox } from 'react-native';
+import { YellowBox } from 'react-native'
+import Modal from 'react-native-modalbox'
+import RadioGroup from 'react-native-radio-buttons-group'
+import ButtonStyle from './ButtonStyle'
+import { Icon as ElementIcon, Button as ElementButton } from 'react-native-elements'
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 class OrderDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            data: [
+                {
+                    label: 'กำลังทำ',
+                    value: "กำลังทำ",
+                },
+                {
+                    label: 'ไม่ทำเมนูนี้',
+                    value: "ไม่ทำเมนูนี้",
+                    selected: true
+                },
+                {
+                    label: 'เสร็จแล้ว',
+                    value: "เสร็จแล้ว",
+                },
+            ],
+            isOpen: false,
+            isDisabled: false,
+            swipeToClose: true,
+            sliderValue: 0.3,
         };
+    }
+    onSubmit = () => {
+        this.refs.modal3.close()
     }
     render() {
         return (
@@ -22,7 +48,7 @@ class OrderDetail extends Component {
                 <CardSection>
                     <View>
                         <Text style={styles.textForm}>
-                            <Text style={{color:'blue'}}>รายละเอียดของเมนู : </Text>{this.props.name}  {this.props.topping} {this.props.level}
+                            <Text style={{ color: 'blue' }}>รายละเอียดของเมนู : </Text>{this.props.name}  {this.props.toppings} {this.props.level}
                         </Text>
                     </View>
 
@@ -30,17 +56,41 @@ class OrderDetail extends Component {
                 <CardSection>
                     <View>
                         <Text style={styles.textForm}>
-                            <Text style={{color:'blue'}}>ราคา :</Text> {this.props.price} บาท
+                            <Text style={{ color: 'blue' }}>ราคา :</Text> {this.props.price} บาท
                             </Text>
                     </View>
                 </CardSection>
                 <CardSection>
                     <View>
                         <Text style={styles.textForm}>
-                        <Text style={{color:'blue'}}>สถานะ :</Text> <Text style={{color:'red'}}>{this.props.status} </Text>
-                            </Text>
+                            <Text style={{ color: 'blue' }}>สถานะ :</Text> <Text style={{ color: 'red' }}>{this.props.status} </Text>
+                        </Text>
+                        <ButtonStyle onPress={() => this.refs.modal3.open()} style={styles.btn}>
+                            อัพเดท!!
+                        </ButtonStyle>
                     </View>
                 </CardSection>
+                     <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"}>
+                        <View style={styles.containerMain}>
+                            {/* <CardSection>
+                                <Text style={styles.text}> อัพเดท status</Text>
+                            </CardSection> */}
+                            <CardSection>
+                                <View style={styles.container}>
+                                    <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
+                                </View>
+                            </CardSection>
+                            <CardSection>
+                                <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end'}}>
+                                    <ElementButton onPress={() => this.onSubmit()}
+                                        large
+                                        icon={{ name: 'envira', type: 'font-awesome' }}
+                                        title={`ยืนยัน`}
+                                    />
+                                </View>
+                            </CardSection>
+                        </View>
+                    </Modal>
             </CardStyle>
         );
     }
@@ -55,7 +105,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: 'green'
-        
+
     },
     thumbnailStyle: {
         height: 300,
@@ -89,8 +139,7 @@ const styles = StyleSheet.create({
     },
 
     modal3: {
-        height: 500,
-        width: 400
+        flex:1
     },
 
     modal4: {
