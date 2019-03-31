@@ -1,4 +1,7 @@
 import firebase from "firebase";
+import PropTypes from 'prop-types';
+
+
 
 class Firebase {
 
@@ -21,6 +24,7 @@ class Firebase {
         }).then(user => {
         if (user) {
           resolve(user);
+          console.log(".........",user)
         }
       });
     })
@@ -77,5 +81,9 @@ class Firebase {
   };
 
 }
+
+Firebase.propTypes = {
+  change: PropTypes.func.isRequired,
+};
 
 export default new Firebase();

@@ -8,6 +8,7 @@ import RadioGroup from 'react-native-radio-buttons-group'
 import ButtonStyle from './ButtonStyle'
 import { Icon as ElementIcon, Button as ElementButton } from 'react-native-elements'
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
+import firebase from 'firebase'
 
 class OrderDetail extends Component {
     constructor(props) {
@@ -34,10 +35,24 @@ class OrderDetail extends Component {
             sliderValue: 0.3,
         };
     }
+    
     onSubmit = () => {
+        const {data} = this.state
+        firebase.database().ref(`Orders/${this.props.id}`).update({
+            status: data.filter(data => data.selected === true).pop().label,
+        })
         this.refs.modal3.close()
+        
     }
+    
+    onPress = data => {
+        console.log(data)
+        this.setState({ data });
+    }
+
     render() {
+        let selectedButton = this.state.data.find(e => e.selected == true);
+        selectedButton = selectedButton ? selectedButton.value : this.state.data[0].label;
         return (
             <CardStyle>
                 <CardSection>

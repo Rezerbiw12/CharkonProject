@@ -3,7 +3,6 @@ import { View, Text } from 'react-native';
 import { Content, Container, Header, Left, Right, Icon, Title, Footer, FooterTab, Button as NewButton, Badge, Text as NewText } from 'native-base';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
-import ListMenu from './ListMenu'
 
 class AdminScreen extends Component {
   constructor() {
@@ -13,7 +12,6 @@ class AdminScreen extends Component {
     };
   }
   render() {
-    const {navigate}=this.props.navigation
     return (
       <Container>
         <Header>
@@ -27,16 +25,6 @@ class AdminScreen extends Component {
         <Content style={{ padding: 20 }}>
           <View>
             <View style={{ padding: 20 }}>
-              <NewButton block success onPress={() => {
-            this.props.navigation.dispatch(StackActions.reset({
-              index: 0,
-              actions: [
-                NavigationActions.navigate({ routeName: 'ListMenu' })
-              ],
-            }))
-          }}>
-                <NewText style={{ fontSize: 20 }}>จัดการออเดอร์</NewText>
-              </NewButton>
             </View>
             <View style={{ padding: 20 }}>
               <NewButton block success onPress={() => this.setState({ dialogVisible: true })}>
@@ -63,14 +51,6 @@ class AdminScreen extends Component {
     );
   }
 }
-
-const AppNavigator = createStackNavigator({
-  ListMenu: {
-    screen: ListMenu,
-  },
-}, {
-    initialRouteName: 'ListMenu',
-});
 
 export default AdminScreen;
 

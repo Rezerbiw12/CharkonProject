@@ -62,8 +62,8 @@ class HomeScreen extends Component {
       }
     
     renderMenu() {
-        return this.state.data.map(menu => 
-            <MenuDetail key={menu.Name} Description={menu.Discription} Name={menu.Name} Price={menu.Price} url={menu.url}/>
+        return this.state.data.map(menu,index=> 
+            <MenuDetail key={index} Description={menu.Discription} Name={menu.Name} Price={menu.Price} url={menu.url}/>
         );
       }
     static navigationOptions = {

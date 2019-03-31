@@ -7,9 +7,8 @@ import Modal from 'react-native-modalbox'
 import RadioGroup from 'react-native-radio-buttons-group'
 import CheckBox from 'react-native-checkbox'
 import { Icon as ElementIcon, Button as ElementButton } from 'react-native-elements'
+
 import firebase from 'firebase'
-import { YellowBox } from 'react-native';
-YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 class MenuDetail extends Component {
     constructor() {
@@ -79,6 +78,7 @@ class MenuDetail extends Component {
         console.log(data)
         this.setState({ data });
     }
+    
 
     onToppingChange = (index, checked) => {
         let { toppings } = this.state
@@ -109,45 +109,45 @@ class MenuDetail extends Component {
                     <View style={styles.thumbnailContainerStyle}>
                         <Image
                             style={styles.thumbnailStyle}
-                            source={{ uri: this.props.url || "https://firebasestorage.googleapis.com/v0/b/charkononline.appspot.com/o/projectpicture%2Fdefault.png?alt=media&token=00ee7021-905d-4dce-bf38-ee07833beb91" }}
+                            source={{uri:this.props.url || "https://firebasestorage.googleapis.com/v0/b/charkononline.appspot.com/o/projectpicture%2Fdefault.png?alt=media&token=00ee7021-905d-4dce-bf38-ee07833beb91"}}
                         />
                     </View>
                 </CardSection>
                 <ButtonStyle onPress={() => this.refs.modal3.open()} style={styles.btn}>
                     Buy Now!!!
                 </ButtonStyle>
-                <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"}>
-                    <View style={styles.containerMain}>
-                        <CardSection>
-                            <Text style={styles.text}> รายละเอียดสินค้า</Text>
-                        </CardSection>
-                        <CardSection>
-                            <View style={styles.container}>
-                                <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
-                            </View>
-                        </CardSection>
-                        <CardSection>
-                            <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
-                                {
-                                    toppings.map((topping, index) =>
-                                        <CheckBox
-                                            label={`${topping.name} (${topping.price} บาท)`}
-                                            onChange={checked => this.onToppingChange(index, checked)}
-                                        />
-                                    )
-                                }
-                            </View>
-                        </CardSection>
-                        <CardSection>
-                            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end', padding: 10 }}>
-                                <ElementButton onPress={() => this.onSubmit()}
-                                    large
-                                    icon={{ name: 'envira', type: 'font-awesome' }}
-                                    title={`ยืนยัน (รวมทั้งหมด ${this.sumPrice()} บาท)`} />
-                            </View>
-                        </CardSection>
-                    </View>
-                </Modal>
+                    <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"}>
+                        <View style={styles.containerMain}>
+                            <CardSection>
+                                <Text style={styles.text}> รายละเอียดสินค้า</Text>
+                            </CardSection>
+                            <CardSection>
+                                <View style={styles.container}>
+                                    <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
+                                </View>
+                            </CardSection>
+                            <CardSection>
+                                <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
+                                    {
+                                        toppings.map((topping, index) => 
+                                            <CheckBox
+                                                label={`${topping.name} (${topping.price} บาท)`}
+                                                onChange={checked => this.onToppingChange(index, checked)}
+                                            />
+                                        )
+                                    }
+                                </View>
+                            </CardSection>
+                            <CardSection>
+                                <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end', padding: 10 }}>
+                                    <ElementButton onPress={() => this.onSubmit()}
+                                        large
+                                        icon={{ name: 'envira', type: 'font-awesome' }}
+                                        title={`ยืนยัน (รวมทั้งหมด ${this.sumPrice()} บาท)`} />
+                                </View>
+                            </CardSection>
+                        </View>
+                    </Modal>
             </CardStyle>
         );
     }
