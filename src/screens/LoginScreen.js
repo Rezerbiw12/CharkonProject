@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { Container, Header, Left, Right, Icon, Title, Button } from 'native-base'
 import FirebaseLogin from "../FirebaseLogin";
+import CardStyle from '../component/CardStyle'
+import LoginForm from '../screens/LoginForm'
+import firebase from 'firebase'
+import config from '../config/config';
+import AdminScreen from '../screens/AdminScreen'
 
 class LoginScreen extends Component {
   static navigationOptions = {
