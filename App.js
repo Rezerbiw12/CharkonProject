@@ -6,6 +6,8 @@ import ContactScreen from './src/screens/ContactScreen'
 import AdditionalScreen from './src/screens/AdditionalScreen'
 import LoginScreen from './src/screens/LoginScreen'
 import AdminScreen from './src/screens/AdminScreen'
+import ListmenuStackNavigator from './src/screens/AdditionalScreen'
+
 import {
   Platform,
   StyleSheet,
@@ -40,7 +42,7 @@ const AppDrawerNavigator = createDrawerNavigator({
   Homes: HomeScreen,
   Settings: SettingsScreen,
   Contact: ContactScreen,
-  Additional: AdditionalScreen,
+  Additional: ListmenuStackNavigator,
   CreateAndLogin:LoginScreen,
 }, {
     contentComponent: CustomDrawerComponent,

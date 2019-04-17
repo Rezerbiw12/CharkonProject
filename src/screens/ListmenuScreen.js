@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-class ListMenu extends Component {
+class ListmenuScreen extends Component {
   render() {
     return (
       <View>
-        <Text> textInComponent </Text>
+        <Text> Listmenu </Text>
       </View>
     );
   }
 }
 
-export default ListMenu;
+export default ListmenuScreen;
