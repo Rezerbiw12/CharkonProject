@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text,Button } from 'react-native';
 import { Container, Header, Left, Right, Icon, Title } from 'native-base'
 import ListmenuScreen from './ListmenuScreen'
-import Profile from './Profile'
+import ProfileScreen from './ProfileScreen'
 import { 
     createDrawerNavigator, 
     DrawerItems,
@@ -28,8 +28,7 @@ class AdditionalScreen extends Component {
                     </Right>
                 </Header>
                 <View style={{ flex: 1 }}>
-            
-                <Button title="ListMenu" onPress={()=>this.props.navigation.navigate('Profile')}/>
+                <ListmenuStackNavigator/>
                 </View>
             </View>
         );
@@ -38,7 +37,7 @@ class AdditionalScreen extends Component {
 
 export default AdditionalScreen;
 
-export const ListmenuStackNavigator = createStackNavigator({
+const ListmenuStackNavigator = createStackNavigator({
     ListMenu: ListmenuScreen,
-    Profile:Profile,
+    Profile:ProfileScreen,
     })

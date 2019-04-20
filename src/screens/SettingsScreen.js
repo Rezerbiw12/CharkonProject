@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { Container, Header, Left, Right, Icon, Title, Footer, FooterTab, Button, Badge } from 'native-base'
-import { SearchBar } from 'react-native-elements'
 import OrderDetail from '../component/OrderDetail'
 import firebase from 'firebase'
 import { YellowBox } from 'react-native';
