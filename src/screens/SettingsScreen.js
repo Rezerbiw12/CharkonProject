@@ -23,7 +23,7 @@ class SettingsScreen extends Component {
     }
     renderOrder() {
         return this.state.data.map((Order, index) =>
-            <OrderDetail key={index} level={Order.level} topping={Order.toppings} name={Order.name} price={Order.price} status={Order.status} username={Order.username} id={Order.id}/>
+            <OrderDetail key={index} level={Order.level} toppings={Order.toppings} name={Order.name} price={Order.price} status={Order.status} username={Order.username} id={Order.id}/>
         );
     }
     static navigationOptions = {

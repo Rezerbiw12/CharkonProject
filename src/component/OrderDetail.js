@@ -49,6 +49,7 @@ class OrderDetail extends Component {
         console.log(data)
         this.setState({ data });
     }
+    
 
     render() {
         let selectedButton = this.state.data.find(e => e.selected == true);
@@ -87,9 +88,6 @@ class OrderDetail extends Component {
                 </CardSection>
                      <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"}>
                         <View style={styles.containerMain}>
-                            {/* <CardSection>
-                                <Text style={styles.text}> อัพเดท status</Text>
-                            </CardSection> */}
                             <CardSection>
                                 <View style={styles.container}>
                                     <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
