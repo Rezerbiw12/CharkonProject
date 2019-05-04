@@ -11,7 +11,7 @@ YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTIm
 
 
 class HomeScreen extends Component {
-    state = {url:'',Discription:'', Name:'', Price:'',data: []}
+    state = {url:'',Discription:'', Name:'', Price:'',data: [], search: '' }
     readUserData = () =>  {
         firebase.database().ref('Product/').on('value', (snapshot) => {
             var data =[]
@@ -28,41 +28,13 @@ class HomeScreen extends Component {
             this.setState({data})
         });
     }
-    // WriteUserData(){
-    //     firebase.database().ref('Orders/Users3/Item1').set(
-    //         {
-                
-    //             status:'ส่งแล้ว',
-    //             message:'หวานน้อย'
-    //         }
-    //     )
-    //     firebase.database().ref('Orders/Users3/Item1/Addons/Addons3').set(
-    //         {
-                
-    //             Name:'ไข่มุก',
-    //             Price:'5'
-    //         }
-    //     )
-    //     firebase.database().ref('Orders/Users3/Item1/Product1').set(
-    //         {
-                
-    //             Discription:'เย็น',
-    //             Name:'ชานม',
-    //             Price:'20'
-    //         }
-    //     ).then(()=>{
-    //         console.log('INSERTED')
-    //     }).catch((error)=>{
-    //         console.log(error)
-    //     });
-    // }
     componentWillMount() {
-        //this.WriteUserData()
         this.readUserData() 
       }
     
     renderMenu() {
-        return this.state.data.map(menu => 
+        const { search } = this.state
+        return this.state.data.filter(menu => search.trim() === '' || menu.Name.indexOf(search.trim()) !== -1).map(menu => 
             <MenuDetail key={menu.Name} navigation={this.props.navigation} Description={menu.Discription} Name={menu.Name} Price={menu.Price} url={menu.url}/>
         );
       }
@@ -72,7 +44,7 @@ class HomeScreen extends Component {
         )
     }
     render() {
-        // console.log('--------',this.state.Discription);
+        const { search } = this.props
         return (
             <Container>
                 <Header>
@@ -86,10 +58,11 @@ class HomeScreen extends Component {
                 <View >
                     <SearchBar
                         lightTheme
-                        onChangeText={(text) => this.setState({ text })}
-                        onClearText={(text) => this.setState({ text })}
+                        onChangeText={(text) => this.setState({ search: text })}
+                        onClearText={(text) => this.setState({ search: text })}
                         icon={{ type: 'font-awesome', name: 'search' }}
                         placeholder='เช่นชานมไข่มุก...'
+                        value={search}
                          />
                 </View>
                 <View style={{ flex:1}}>
