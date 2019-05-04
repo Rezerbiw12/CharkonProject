@@ -69,14 +69,62 @@ class MenuDetail extends Component {
                 name:this.props.Name,
                 username: user.displayName,
                 level: data.filter(data => data.selected === true).pop().label,
-                status: 'ยังไม่ส่ง',
+                status: 'รอการตอบรับจากทางร้าน',
                 price: this.sumPrice(),
                 toppings: toppings.filter(topping => topping.selected === true).map(topping => topping.name)
+            }, (err) => {
+                this.setState(
+                    {
+                        name: '',
+                        username: 'biwkabpom141',
+                        basePrice: 20,
+                        data: [
+                            {
+                                label: 'หวานน้อย',
+                                value: "หวานน้อย",
+                            },
+                            {
+                                label: 'หวานปกติ',
+                                value: "หวานปกติ",
+                                selected: true
+                            },
+                            {
+                                label: 'หวานมาก',
+                                value: "หวานมาก",
+                            },
+                        ],
+                        toppings: [
+                            {
+                                name: 'ไซรัป',
+                                price: 5,
+                                selected: false,
+                            },
+                            {
+                                name: 'วิปปิ้งครีม',
+                                price: 10,
+                                selected: false,
+                            },
+                            {
+                                name: 'ไข่มุก',
+                                price: 5,
+                                selected: false,
+                            },
+                            {
+                                name: 'เยลลี่',
+                                price: 5,
+                                selected: false,
+                            },
+                        ],
+                        isOpen: false,
+                        isDisabled: false,
+                        swipeToClose: true,
+                        sliderValue: 0.3,
+                    }
+                )
             })
         }
         else {
         this.props.navigation.navigate('Login')
-
         }
         this.refs.modal3.close()
     }

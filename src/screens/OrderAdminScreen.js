@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { Container, Header, Left, Right, Icon, Title, Footer, FooterTab, Button, Badge } from 'native-base'
-import OrderDetail from '../component/OrderDetail'
+import OrderDetailAdmin from '../component/OrderDetailAdmin'
 import firebase from 'firebase'
 import { YellowBox } from 'react-native';
 
 
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
-class SettingsScreen extends Component {
+class OrderAdminScreen extends Component {
     state = { level: '', price: '', data: [], toppings: '', name: '', status: '', username: '',id:''}
     readUserData = () => {
         firebase.database().ref('Orders/').on('value', (snapshot) => {
@@ -23,7 +23,7 @@ class SettingsScreen extends Component {
     }
     renderOrder() {
         return this.state.data.map((Order, index) =>
-            <OrderDetail key={index} level={Order.level} toppings={Order.toppings} name={Order.name} price={Order.price} status={Order.status} username={Order.username} id={Order.id}/>
+            <OrderDetailAdmin key={index} level={Order.level} toppings={Order.toppings} name={Order.name} price={Order.price} status={Order.status} username={Order.username} id={Order.id}/>
         );
     }
     static navigationOptions = {
@@ -54,4 +54,4 @@ class SettingsScreen extends Component {
     }
 }
 
-export default SettingsScreen;
+export default OrderAdminScreen;

@@ -10,7 +10,7 @@ import { Icon as ElementIcon, Button as ElementButton } from 'react-native-eleme
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 import firebase from 'firebase'
 
-class OrderDetail extends Component {
+class OrderDetailAdmin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -86,6 +86,27 @@ class OrderDetail extends Component {
                         </Text>
                     </View>
                 </CardSection>
+                        <ButtonStyle onPress={() => this.refs.modal3.open()} style={styles.btn}>
+                            อัพเดท!!
+                        </ButtonStyle>
+                     <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"}>
+                        <View style={styles.containerMain}>
+                            <CardSection>
+                                <View style={styles.container}>
+                                    <RadioGroup radioButtons={this.state.data} onPress={this.onPress} />
+                                </View>
+                            </CardSection>
+                            <CardSection>
+                                <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end'}}>
+                                    <ElementButton onPress={() => this.onSubmit()}
+                                        large
+                                        icon={{ name: 'envira', type: 'font-awesome' }}
+                                        title={`ยืนยัน`}
+                                    />
+                                </View>
+                            </CardSection>
+                        </View>
+                    </Modal>
             </CardStyle>
         );
     }
@@ -207,4 +228,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default OrderDetail;
+export default OrderDetailAdmin;
