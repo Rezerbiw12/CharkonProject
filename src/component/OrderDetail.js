@@ -58,7 +58,7 @@ class OrderDetail extends Component {
             <CardStyle>
                 <CardSection>
                     <View style={styles.headerContentStyle}>
-                        <Text style={styles.headerTextStyle}>{this.props.username}</Text>
+                        <Text style={styles.headerTextStyle}>เมนูของ : {this.props.username}</Text>
                     </View>
                 </CardSection>
                 <CardSection>
@@ -81,11 +81,11 @@ class OrderDetail extends Component {
                         <Text style={styles.textForm}>
                             <Text style={{ color: 'blue' }}>สถานะ :</Text> <Text style={{ color: 'red' }}>{this.props.status} </Text>
                         </Text>
+                    </View>
+                </CardSection>
                         <ButtonStyle onPress={() => this.refs.modal3.open()} style={styles.btn}>
                             อัพเดท!!
                         </ButtonStyle>
-                    </View>
-                </CardSection>
                      <Modal style={[styles.modal, styles.modal3]} position={"center"} ref={"modal3"}>
                         <View style={styles.containerMain}>
                             <CardSection>

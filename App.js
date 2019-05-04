@@ -6,6 +6,7 @@ import ContactScreen from './src/screens/ContactScreen'
 import AdditionalScreen from './src/screens/AdditionalScreen'
 import LoginScreen from './src/screens/LoginScreen'
 import AdminScreen from './src/screens/AdminScreen'
+import {NineCubesLoader,TextLoader} from 'react-native-indicator'
 import {
   Platform,
   StyleSheet,
@@ -35,7 +36,7 @@ export default class App extends Component {
   render() {
     const { user, isLoading } = this.state;
     if (isLoading) {
-      return <View><Text>Loading...</Text></View>
+      return <View style={{flex:1,flexDirection:'column',justifyContent:'center',alignItems:'center'}}><NineCubesLoader /></View>
     }
       if (user) {
         return <AppDrawerNavigator/>

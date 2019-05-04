@@ -17,6 +17,7 @@
     "react-native-checkbox": "^2.0.0",
     "react-native-elements": "^0.19.1",
     "react-native-icon-checkbox": "^1.2.0",
+    "react-native-indicator": "^0.7.0",
     "react-native-modalbox": "^1.6.0",
     "react-native-radio-buttons-group": "^1.0.7",
     "react-native-restart": "0.0.7",
