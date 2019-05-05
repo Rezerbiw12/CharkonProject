@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 // init card component.
 const CardStyle = (props)=>{
     return (
-        <View style={stlyes.containerStyle}> 
+        <View style={{...stlyes.containerStyle, ...props.style}}> 
             {props.children} 
         </View>
     );

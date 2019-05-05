@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text,ScrollView } from 'react-native';
+import { View, Text,ScrollView,Image} from 'react-native';
 import { Container, Header, Left, Right, Icon, Title, Footer, FooterTab, Button, Badge } from 'native-base'
 import { SearchBar } from 'react-native-elements'
 import MenuDetail from '../component/MenuDetail'
 import firebase from 'firebase'
 import { YellowBox } from 'react-native';
 
-
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 
 class HomeScreen extends Component {
-    state = {url:'',Discription:'', Name:'', Price:'',data: [], search: '' }
+    state = {url:'',Discription:'', Name:'', Price:'',data: [], search: '', isOpen: false }
     readUserData = () =>  {
         firebase.database().ref('Product/').on('value', (snapshot) => {
             var data =[]
@@ -27,6 +26,12 @@ class HomeScreen extends Component {
              console.log('DataOfMenu',data)
             this.setState({data})
         });
+        firebase.database().ref('Status/status').on('value', (snapshot) => {
+            let status = snapshot.val()
+            this.setState({
+                isOpen: status === 'เปิดร้าน' ? true : false
+            })
+        });
     }
     componentWillMount() {
         this.readUserData() 
@@ -34,8 +39,8 @@ class HomeScreen extends Component {
     
     renderMenu() {
         const { search } = this.state
-        return this.state.data.filter(menu => search.trim() === '' || menu.Name.indexOf(search.trim()) !== -1).map(menu => 
-            <MenuDetail key={menu.Name} navigation={this.props.navigation} Description={menu.Discription} Name={menu.Name} Price={menu.Price} url={menu.url}/>
+        return this.state.data.filter(menu => search.trim() === '' || menu.Name.indexOf(search.trim()) !== -1).map((menu,index) => 
+            <MenuDetail key={index} navigation={this.props.navigation} Description={menu.Discription} Name={menu.Name} Price={menu.Price} url={menu.url}/>
         );
       }
     static navigationOptions = {
@@ -44,6 +49,7 @@ class HomeScreen extends Component {
         )
     }
     render() {
+        const { isOpen } = this.state
         const { search } = this.props
         return (
             <Container>
@@ -65,19 +71,10 @@ class HomeScreen extends Component {
                         value={search}
                          />
                 </View>
-                <View style={{ flex:1}}>
-                <ScrollView>  
-                    {this.renderMenu()}
-                </ScrollView>
-        <Footer>
-          <FooterTab>
-            <Button active badge vertical>
-              <Badge ><Text>2</Text></Badge>
-              <Icon active name="basket" />
-              <Text>ตะกร้า</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
+                <View style={{ flex:1,flexDirection:'column',justifyContent:'center',alignItems:'center',marginBottom:100}}>
+                    {isOpen === true && this.renderMenu()}
+                    {isOpen === false && <Image source={require('../../image/close-icon.png')} style={{ height: 120, width: 120,marginTop:20}}/>}
+                <Text style={{fontSize:30,color:'red',fontWeight: 'bold'}}>Sorry We're "CLOSE"</Text>
                 </View>
             </Container>
         );

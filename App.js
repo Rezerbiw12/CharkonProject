@@ -7,6 +7,7 @@ import AdditionalScreen from './src/screens/AdditionalScreen'
 import LoginScreen from './src/screens/LoginScreen'
 import AdminScreen from './src/screens/AdminScreen'
 import {NineCubesLoader,TextLoader} from 'react-native-indicator'
+import CardSection from './src/component/CardSection'
 import {
   Platform,
   StyleSheet,
@@ -14,11 +15,12 @@ import {
   View,
   SafeAreaView,
   ScrollView,
-  Dimensions,
-  Image, Button
+  Image, 
+  Button
 } from 'react-native';
 import firebase from 'firebase';
 import OrderAdminScreen from './src/screens/OrderAdminScreen';
+import CardStyle from './src/component/CardStyle';
 
 export default class App extends Component {
   state = {
@@ -55,16 +57,20 @@ export default class App extends Component {
 }
 
 const CustomDrawerComponent = (props) => (
-  <SafeAreaView style={{ flex: 1 }}>
-    <View style={{ height: 150, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
-    <Image source={require('./image/icon-men.png')} style={{ height: 120, width: 120, borderRadius: 60 }} />
-      <Text style={{ fontWeight: 'bold'}}>Username: {firebase.auth().currentUser.displayName}</Text>
+  <SafeAreaView style={{ flex: 1, }}>
+  <View style={{flex: 1,flexDirection:'column',alignItems:'center'}}>
+    <Image source={require('./image/profile.jpg')} style={{ height: 120, width: 120, borderRadius: 60,marginTop:20}} />
     </View>
+    <CardStyle style={{marginBottom:10}}>
+      <Text style={{ fontWeight: 'bold',textAlign:'center'}}>Username: {firebase.auth().currentUser.displayName}</Text>
+      </CardStyle>
     <ScrollView>
       <DrawerItems{...props} />
     </ScrollView>
     <View style={{ flex: 1 ,flexDirection:'column',justifyContent:'flex-end'}}>
+    <CardStyle style={{marginBottom:10}}>
       <Button title="Log Out" onPress={() => firebase.auth().signOut()} />
+    </CardStyle>
     </View>
   </SafeAreaView>
 )
@@ -85,7 +91,9 @@ const CustomDrawerComponent3 = (props) => (
       <DrawerItems{...props} />
     </ScrollView>
     <View style={{ flex: 1 ,flexDirection:'column',justifyContent:'flex-end'}}>
+    <CardStyle style={{marginBottom:10}}>
       <Button title="Log Out" onPress={() => firebase.auth().signOut()} />
+    </CardStyle>
     </View>
   </SafeAreaView>
 )
