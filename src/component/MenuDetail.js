@@ -219,6 +219,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     thumbnailStyle: {
+        borderRadius: 10,
         height: 300,
         width: 300,
         margin: 20

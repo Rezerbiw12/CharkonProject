@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text, Image} from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text, Image,ScrollView,} from 'react-native';
 import InputField from "../../components/InputField";
 import {w, h, totalSize} from '../../api/Dimensions';
 import GetStarted from './GetStarted';
@@ -53,6 +53,7 @@ export default class Login extends Component {
 
   render() {
     return (
+      <ScrollView>
       <View style={styles.container}>
         <Image style={styles.icon} resizeMode="contain" source={companyLogo}/>
         <InputField
@@ -87,6 +88,7 @@ export default class Login extends Component {
           </TouchableOpacity>
         </View>
       </View>
+      </ScrollView>
     )
   }
 }
@@ -97,6 +99,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
+    borderRadius: 10,
     width: w(90),
     height: h(30),
     marginTop: h(3),

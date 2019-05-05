@@ -25,6 +25,7 @@ const stlyes ={
     marginRight: 6,
     marginTop: 6,
     padding: 10,
+    borderRadius: 25,
     }
 };
  

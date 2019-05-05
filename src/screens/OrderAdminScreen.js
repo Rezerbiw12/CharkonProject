@@ -28,7 +28,7 @@ class OrderAdminScreen extends Component {
     }
     static navigationOptions = {
         drawerIcon: ({ tintColor }) => (
-            <Icon name="settings" style={{ fontSize: 24, color: tintColor }} />
+            <Icon name="ios-alarm" style={{ fontSize: 24, color: tintColor }} />
         )
     }
     render() {

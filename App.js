@@ -43,7 +43,7 @@ export default class App extends Component {
     }
       if (user) {
         if (user.email == 'admin@hotmail.com') {
-          return <AppDrawerNavigator3></AppDrawerNavigator3>
+          return <AppDrawerNavigator3/>
         } else {
 
           return <AppDrawerNavigator/>
@@ -58,12 +58,12 @@ const CustomDrawerComponent = (props) => (
   <SafeAreaView style={{ flex: 1 }}>
     <View style={{ height: 150, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
     <Image source={require('./image/icon-men.png')} style={{ height: 120, width: 120, borderRadius: 60 }} />
-      <Text>{firebase.auth().currentUser.displayName}</Text>
+      <Text style={{ fontWeight: 'bold'}}>Username: {firebase.auth().currentUser.displayName}</Text>
     </View>
     <ScrollView>
       <DrawerItems{...props} />
     </ScrollView>
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 ,flexDirection:'column',justifyContent:'flex-end'}}>
       <Button title="Log Out" onPress={() => firebase.auth().signOut()} />
     </View>
   </SafeAreaView>
@@ -84,7 +84,7 @@ const CustomDrawerComponent3 = (props) => (
     <ScrollView>
       <DrawerItems{...props} />
     </ScrollView>
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 ,flexDirection:'column',justifyContent:'flex-end'}}>
       <Button title="Log Out" onPress={() => firebase.auth().signOut()} />
     </View>
   </SafeAreaView>
@@ -92,7 +92,7 @@ const CustomDrawerComponent3 = (props) => (
 
 const AppDrawerNavigator = createDrawerNavigator({
   Homes: HomeScreen,
-  QueueOreder: QueueOrderScreen,
+  QueueOrder: QueueOrderScreen,
   Contact: ContactScreen,
   Additional: AdditionalScreen,
 }, {
@@ -116,6 +116,7 @@ const AppDrawerNavigator2 = createDrawerNavigator({
 
   const AppDrawerNavigator3 = createDrawerNavigator({
     Listmenu:OrderAdminScreen,
+    Status:AdminScreen,
     Contact: ContactScreen,
   }, {
       contentComponent: CustomDrawerComponent3,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity,ScrollView} from 'react-native';
 import {w, h, totalSize} from '../../api/Dimensions';
 import InputField from '../../components/InputField';
 import Continue from './Continue';
@@ -73,6 +73,7 @@ export default class Register extends Component {
 
   render() {
     return(
+      <ScrollView>
       <View style={styles.container}>
         <Text style={styles.create}>CREATE ACCOUNT</Text>
         <InputField
@@ -118,6 +119,7 @@ export default class Register extends Component {
           <Text style={styles.signIn}>{'<'} Sign In</Text>
         </TouchableOpacity>
       </View>
+      </ScrollView>
     )
   }
 }
