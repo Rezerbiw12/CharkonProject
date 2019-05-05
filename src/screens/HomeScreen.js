@@ -71,10 +71,20 @@ class HomeScreen extends Component {
                         value={search}
                          />
                 </View>
-                <View style={{ flex:1,flexDirection:'column',justifyContent:'center',alignItems:'center',marginBottom:100}}>
+                <View style={{ flex:1}}>
+                <ScrollView>  
                     {isOpen === true && this.renderMenu()}
-                    {isOpen === false && <Image source={require('../../image/close-icon.png')} style={{ height: 120, width: 120,marginTop:20}}/>}
-                <Text style={{fontSize:30,color:'red',fontWeight: 'bold'}}>Sorry We're "CLOSE"</Text>
+                    {isOpen === false && <View style={{flex:1,flexDirection:'column',alignItems:'center',justifyContent:'center'}}><Image source={require('../../image/close-icon.png')} style={{height: 120, width: 120,marginTop:20}} /><Text style={{fontSize:30,color:'red',fontWeight: 'bold'}}>Sorry We're "CLOSE"</Text></View>}
+                </ScrollView>
+        <Footer>
+          <FooterTab>
+            <Button active badge vertical>
+              <Badge ><Text>2</Text></Badge>
+              <Icon active name="basket" />
+              <Text>ตะกร้า</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
                 </View>
             </Container>
         );
