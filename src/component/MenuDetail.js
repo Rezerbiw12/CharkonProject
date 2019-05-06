@@ -69,7 +69,7 @@ class MenuDetail extends Component {
                 name:this.props.Name,
                 username: user.displayName,
                 level: data.filter(data => data.selected === true).pop().label,
-                status: 'รอการตอบรับจากทางร้าน',
+                status: 'รอการตอบรับจากทางร้าน!!',
                 price: this.sumPrice(),
                 toppings: toppings.filter(topping => topping.selected === true).map(topping => topping.name)
             }, (err) => {

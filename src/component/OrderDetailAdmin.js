@@ -67,7 +67,14 @@ class OrderDetailAdmin extends Component {
                 <CardSection>
                     <View>
                         <Text style={styles.textForm}>
-                            <Text style={{ color: 'blue' }}>รายละเอียดของเมนู : </Text>{this.props.name}  {this.props.toppings} {this.props.level}
+                            <Text style={{ color: 'blue' }}>ชื่อเมนู : </Text> {this.props.name}
+                        </Text>
+                    </View>
+                </CardSection>
+                <CardSection>
+                    <View>
+                        <Text style={styles.textForm}>
+                            <Text style={{ color: 'blue' }}>รายละเอียดของเมนู : </Text> {this.props.toppings && this.props.toppings.join(' ')} {this.props.level}
                         </Text>
                     </View>
 

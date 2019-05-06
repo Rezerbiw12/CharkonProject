@@ -4,8 +4,18 @@ import Button from 'react-native-button';
 import Modal from 'react-native-modalbox';
 import { Container, Header, Left, Right, Icon, Title, Footer, FooterTab, Button as NewButton, Badge, Text as NewText } from 'native-base'
 import { Icon as ElementIcon, Button as ElementButton } from 'react-native-elements'
+import ChangeText from '../component/ChangeText'
+import CardSection from '../component/CardSection'
 
-class ContactScreen extends Component { 
+class ContactScreen extends Component {
+    state = { appText: 'รายงานปัญหาที่เจอสิ!!' }
+
+    writeText = text => {
+        this.setState({
+            appText: text
+        })
+    }
+
     onPress = data => this.setState({ data });
     static navigationOptions = {
         drawerIcon: ({ tintColor }) => (
@@ -13,7 +23,7 @@ class ContactScreen extends Component {
         )
     }
     render() {
-        
+
         return (
             <View style={{ flex: 1 }}>
                 <Header>
@@ -25,6 +35,10 @@ class ContactScreen extends Component {
                     </Right>
                 </Header>
                 <Button onPress={() => this.refs.modal6.open()} style={styles.btn}>ติดต่อเรา</Button>
+                <View style={styles.container555}>
+                    <Text>{this.state.appText}</Text>
+                    <ChangeText writeText={this.writeText} />
+                </View>
                 <Modal style={[styles.modal4]} position={"bottom"} ref={"modal6"} swipeArea={20}>
                     <Container>
                         <Header>
@@ -96,7 +110,8 @@ const styles = StyleSheet.create({
         margin: 10,
         backgroundColor: "#3B5998",
         color: "white",
-        padding: 10
+        padding: 10,
+        borderRadius: 25
     },
 
     btnModal: {
@@ -155,6 +170,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginBottom: 20,
     },
+    container555: {
+        flex: 1,
+        backgroundColor: '#eee',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }
 
 });
 export default ContactScreen;

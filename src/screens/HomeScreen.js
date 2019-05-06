@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text,ScrollView,Image} from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
 import { Container, Header, Left, Right, Icon, Title, Footer, FooterTab, Button, Badge } from 'native-base'
 import { SearchBar } from 'react-native-elements'
 import MenuDetail from '../component/MenuDetail'
@@ -10,21 +10,21 @@ YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTIm
 
 
 class HomeScreen extends Component {
-    state = {url:'',Discription:'', Name:'', Price:'',data: [], search: '', isOpen: false }
-    readUserData = () =>  {
+    state = { url: '', Discription: '', Name: '', Price: '', data: [], search: '', isOpen: true }
+    readUserData = () => {
         firebase.database().ref('Product/').on('value', (snapshot) => {
-            var data =[]
+            var data = []
             snapshot.forEach((child) => {
                 data.push({
-                  Name:child.val().Name,
-                  Discription:child.val().Discription,
-                  Price:child.val().Price,
-                  url:child.val().url,
+                    Name: child.val().Name,
+                    Discription: child.val().Discription,
+                    Price: child.val().Price,
+                    url: child.val().url,
                 });
 
-             })
-             console.log('DataOfMenu',data)
-            this.setState({data})
+            })
+            console.log('DataOfMenu', data)
+            this.setState({ data })
         });
         firebase.database().ref('Status/status').on('value', (snapshot) => {
             let status = snapshot.val()
@@ -34,15 +34,15 @@ class HomeScreen extends Component {
         });
     }
     componentWillMount() {
-        this.readUserData() 
-      }
-    
+        this.readUserData()
+    }
+
     renderMenu() {
         const { search } = this.state
-        return this.state.data.filter(menu => search.trim() === '' || menu.Name.indexOf(search.trim()) !== -1).map((menu,index) => 
-            <MenuDetail key={index} navigation={this.props.navigation} Description={menu.Discription} Name={menu.Name} Price={menu.Price} url={menu.url}/>
+        return this.state.data.filter(menu => search.trim() === '' || menu.Name.indexOf(search.trim()) !== -1).map((menu, index) =>
+            <MenuDetail key={index} navigation={this.props.navigation} Description={menu.Discription} Name={menu.Name} Price={menu.Price} url={menu.url} />
         );
-      }
+    }
     static navigationOptions = {
         drawerIcon: ({ tintColor }) => (
             <Icon name="home" style={{ fontSize: 24, color: tintColor }} />
@@ -51,6 +51,7 @@ class HomeScreen extends Component {
     render() {
         const { isOpen } = this.state
         const { search } = this.props
+    
         return (
             <Container>
                 <Header>
@@ -69,22 +70,13 @@ class HomeScreen extends Component {
                         icon={{ type: 'font-awesome', name: 'search' }}
                         placeholder='เช่นชานมไข่มุก...'
                         value={search}
-                         />
+                    />
                 </View>
-                <View style={{ flex:1}}>
-                <ScrollView>  
-                    {isOpen === true && this.renderMenu()}
-                    {isOpen === false && <View style={{flex:1,flexDirection:'column',alignItems:'center',justifyContent:'center'}}><Image source={require('../../image/close-icon.png')} style={{height: 120, width: 120,marginTop:20}} /><Text style={{fontSize:30,color:'red',fontWeight: 'bold'}}>Sorry We're "CLOSE"</Text></View>}
-                </ScrollView>
-        <Footer>
-          <FooterTab>
-            <Button active badge vertical>
-              <Badge ><Text>2</Text></Badge>
-              <Icon active name="basket" />
-              <Text>ตะกร้า</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
+                <View style={{ flex: 1 }}>
+                    <ScrollView>
+                        {isOpen === true && this.renderMenu()}
+                        {isOpen === false && <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}><Image source={require('../../image/close-icon.png')} style={{ height: 120, width: 120, marginTop: 20 }} /><Text style={{ fontSize: 30, color: 'red', fontWeight: 'bold' }}>Sorry We're "CLOSE"</Text></View>}
+                    </ScrollView>
                 </View>
             </Container>
         );

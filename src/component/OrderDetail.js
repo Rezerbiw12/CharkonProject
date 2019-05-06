@@ -16,12 +16,12 @@ class OrderDetail extends Component {
         this.state = {
             data: [
                 {
-                    color:'blue',
+                    color: 'blue',
                     label: 'กำลังทำ',
                     value: "กำลังทำ",
                 },
                 {
-                    color:'red',
+                    color: 'red',
                     label: 'ไม่ทำเมนูนี้',
                     value: "ไม่ทำเมนูนี้",
                     selected: true
@@ -38,21 +38,21 @@ class OrderDetail extends Component {
             sliderValue: 0.3,
         };
     }
-    
+
     onSubmit = () => {
-        const {data} = this.state
+        const { data } = this.state
         firebase.database().ref(`Orders/${this.props.id}`).update({
             status: data.filter(data => data.selected === true).pop().label,
         })
         this.refs.modal3.close()
-        
+
     }
-    
+
     onPress = data => {
         console.log(data)
         this.setState({ data });
     }
-    
+
 
     render() {
         let selectedButton = this.state.data.find(e => e.selected == true);
@@ -67,7 +67,14 @@ class OrderDetail extends Component {
                 <CardSection>
                     <View>
                         <Text style={styles.textForm}>
-                            <Text style={{ color: 'blue' }}>รายละเอียดของเมนู : </Text>{this.props.name}  {this.props.toppings} {this.props.level}
+                            <Text style={{ color: 'blue' }}>ชื่อเมนู : </Text> {this.props.name}
+                        </Text>
+                    </View>
+                </CardSection>
+                <CardSection>
+                    <View>
+                        <Text style={styles.textForm}>
+                            <Text style={{ color: 'blue' }}>รายละเอียดของเมนู : </Text> {this.props.toppings && this.props.toppings.join(' ')} {this.props.level}
                         </Text>
                     </View>
 
@@ -134,7 +141,7 @@ const styles = StyleSheet.create({
     },
 
     modal3: {
-        flex:1
+        flex: 1
     },
 
     modal4: {
